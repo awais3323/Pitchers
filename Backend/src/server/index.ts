@@ -5,6 +5,7 @@ import express from "express"
 import { ApolloServer } from "apollo-server-express"
 import { buildSchema } from "type-graphql"
 import { HelloResolver } from "../resolvers/hello"
+import { PostResolver } from "../resolvers/posts"
 
 const main = async () => {
 
@@ -16,17 +17,17 @@ const main = async () => {
     let port = 3000;
     const apolloServer = new ApolloServer({
         schema: await buildSchema({
-            resolvers: [HelloResolver],
+            resolvers: [HelloResolver, PostResolver],
             validate: false
-        })
+        }),
+        context: () => ({ em: orm.em }) 
     })
-    
+
     await apolloServer.start()
     apolloServer.applyMiddleware({ app })
     app.listen(port, () => {
         console.log(`App is running .... port ${port}`)
     })
-
 }
 
 main().catch(err => {
