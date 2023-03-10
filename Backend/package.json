@@ -19,11 +19,15 @@
     "@mikro-orm/core": "^5.6.13",
     "@mikro-orm/migrations": "^5.6.13",
     "@mikro-orm/postgresql": "^5.6.13",
+    "apollo-server-express": "^3.12.0",
+    "class-validator": "^0.14.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "graphql": "^15.8.0",
     "pg": "^8.10.0",
     "ts-node": "^10.9.1",
+    "type-graphql": "^1.1.1",
     "typescript": "^4.9.5"
   },
   "devDependencies": {
