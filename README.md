@@ -11,15 +11,16 @@ Next.js
  You must have postgres installed on your local
 
 
-## Make the build:
-
->```npm run watch```
-
-
 ## run the migrations:
 
->```npx mikro-orm migration:create;```
->``` npx mikro-orm migration:up```
+>```npx mikro-orm migration:create```< OR >```npm run create:migration```
+
+>``` npx mikro-orm migration:up```< OR  > ```npm run up:migration```
+
+
+## Make the build:
+
+>```npm run build:watch```
 
 ## Run server:
 
