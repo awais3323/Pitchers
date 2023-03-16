@@ -11,7 +11,6 @@ export class UserRegister {
     @Field()
     name: string
 
-
     @Field()
     age: number
 

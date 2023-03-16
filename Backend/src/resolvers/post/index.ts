@@ -6,11 +6,10 @@ import { MyContext } from "types";
 @Resolver()
 export class PostResolver {
     @Query(() => [Post])
-    posts(
+    async posts(
         @Ctx() { em }: MyContext
     ): Promise<Post[]> {
-
-        return em.find(Post, {})
+        return await em.find(Post, {})
     }
 
     @Query(() => Post, { nullable: true })
