@@ -2,6 +2,7 @@ import argon2 from "argon2";
 import { User } from "entities/user";
 import { Arg, Ctx, Mutation, Resolver } from "type-graphql";
 import { MyContext } from "types";
+import { sendToken } from "utils/jwt";
 import { LoginUser, UserRegister, UserResponse } from "./types";
 
 @Resolver()
@@ -9,7 +10,7 @@ export class UserResolver {
     @Mutation(() => UserResponse)
     async registeUser(
         @Arg("options") options: UserRegister,
-        @Ctx() { em }: MyContext): Promise<UserResponse> {
+        @Ctx() { em, res }: MyContext): Promise<UserResponse> {
         if (options.username.length <= 3) { //username length issue
             return {
                 errors: [{
@@ -53,6 +54,8 @@ export class UserResolver {
                 }
             }
         }
+
+        sendToken(res, user, 200)
         return { user };
     }
 
