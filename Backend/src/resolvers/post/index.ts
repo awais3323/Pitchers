@@ -1,14 +1,17 @@
 import { Post } from "entities/post";
 import { Int, Resolver } from "type-graphql";
 import { Arg, Ctx, Mutation, Query } from "type-graphql/dist/decorators";
-import { MyContext } from "types";
+import { MyContext } from "config/mikro-orrm-config/types";
+import { isAuthenticatedUser } from "middleware/auth";
 
 @Resolver()
 export class PostResolver {
     @Query(() => [Post])
     async posts(
-        @Ctx() { em }: MyContext
+        @Ctx() { em, req }: MyContext
     ): Promise<Post[]> {
+        await isAuthenticatedUser(req, em)
+        console.log(req.user?._id) // Here the token has been setup and the user is not getting authenticated
         return await em.find(Post, {})
     }
 
@@ -16,7 +19,6 @@ export class PostResolver {
     post(
         @Arg('id', () => Int) _id: number,
         @Ctx() { em }: MyContext): Promise<Post | null> {
-
         return em.findOne(Post, { _id })
     }
 
@@ -57,7 +59,7 @@ export class PostResolver {
     async deletePost(
         @Arg('id', () => Int) _id: number,
         @Ctx() { em }: MyContext): Promise<Boolean> {
-            await em.nativeDelete(Post, { _id })
+        await em.nativeDelete(Post, { _id })
         return true;
     }
 }

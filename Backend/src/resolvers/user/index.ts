@@ -1,7 +1,7 @@
 import argon2 from "argon2";
 import { User } from "entities/user";
 import { Arg, Ctx, Mutation, Resolver } from "type-graphql";
-import { MyContext } from "types";
+import { MyContext } from "config/mikro-orrm-config/types";
 import { sendToken } from "utils/jwt";
 import { LoginUser, UserRegister, UserResponse } from "./types";
 
@@ -62,7 +62,7 @@ export class UserResolver {
     @Mutation(() => UserResponse)
     async loginUser(
         @Arg("options") options: LoginUser,
-        @Ctx() { em }: MyContext): Promise<UserResponse> {
+        @Ctx() { em, res }: MyContext): Promise<UserResponse> {
 
         let user = await em.findOne(User, { username: options.username })
         if (!user) { // if there is no user
@@ -82,6 +82,7 @@ export class UserResolver {
                 }],
             }
         }
+        sendToken(res, user, 200)
         return { user };
     }
 }

@@ -1,6 +1,6 @@
 import { MikroORM } from "@mikro-orm/core"
 import __prod__ from "constants"
-import mikroOrmConfig from "mikro-orm.config"
+import mikroOrmConfig from "config/mikro-orrm-config"
 import { buildSchema } from "type-graphql"
 import { HelloResolver } from "resolvers/hello"
 import { PostResolver } from "resolvers/post"
@@ -21,19 +21,19 @@ const main = async () => {
             validate: false
         }),
     })
-    
+
     await apolloServer.start();
     app.use(
         '/graphql',
         expressMiddleware(apolloServer, {
-            context: async ({ req, res }) => ({ em: orm.em, res: res }),
+            context: async ({ req, res }) => ({ em: orm.em, res: res, req: req }),
         }),
     );
 
     app.get("/", (_, res) => {
         res.send(`Congratulations, App is running on ___ port ${port}`)
     })
-    
+
     app.listen(port, () => {
         console.log(`App is running .... port ${port}`)
     })
