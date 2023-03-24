@@ -1,9 +1,10 @@
 import argon2 from "argon2";
 import { User } from "entities/user";
-import { Arg, Ctx, Mutation, Resolver } from "type-graphql";
+import { Arg, Ctx, Mutation, Query, Resolver } from "type-graphql";
 import { MyContext } from "config/mikro-orrm-config/types";
 import { sendToken } from "utils/jwt";
 import { LoginUser, UserRegister, UserResponse } from "./types";
+import { isAuthenticatedUser } from "middleware/auth";
 
 @Resolver()
 export class UserResolver {
@@ -84,5 +85,17 @@ export class UserResolver {
         }
         sendToken(res, user, 200)
         return { user };
+    }
+    @Query(() => User, { nullable: true })
+    async me(
+        @Ctx() { em, req }: MyContext
+    ) {
+        await isAuthenticatedUser(req, em)
+        if (!req.user) {
+            return null
+        }
+
+       const user = em.findOne(User, {_id:req.user._id})
+       return user;
     }
 }
