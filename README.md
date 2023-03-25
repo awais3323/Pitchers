@@ -78,6 +78,13 @@ user}o--o{hobbies :has
     hobbies{
         int _id PK 
         string name
+    }
+user_hobbies}o--o{hobbies :has 
+user_hobbies}o--o{user:has 
+    user_hobbies{
+        int _id PK 
+        int hobbies_id FK
+        int user_id FK
 
     }
 ```
