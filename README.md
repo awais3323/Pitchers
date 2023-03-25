@@ -126,6 +126,27 @@ OSP_TICKETS}o--||OSP :has
         number priority 
         string type
     }
+OSP_TICKET_LANGUAGES}o--o{OSP_TICKETS :has
+OSP_TICKET_LANGUAGES}o--o{LANGUAGES :has
+    OSP_TICKET_LANGUAGES{
+        int _id PK
+        int language_id FK
+        int osp_ticket_id FK
+    }
+OSP_TICKET_TAGS}o--o{OSP_TICKETS :has
+OSP_TICKET_TAGS}o--o{TAGS:has
+    OSP_TICKET_TAGS{
+        int _id PK
+        int tags_id FK
+        int osp_ticket_id FK
+    }
+OSP_TICKET_COMMENTS}o--||OSP_TICKETS :has
+    OSP_TICKET_COMMENTS{
+        int _id PK
+        int user_id FK
+        int osp_ticket_id FK
+        string comment
+    }
 OSP_LANGUAGES}o--o{OSP :has
 OSP_LANGUAGES}o--o{LANGUAGES :has
     OSP_LANGUAGES{
