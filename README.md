@@ -50,6 +50,10 @@ USER}o--o{ LANGUAGES: knows
         string name
 
     }
+    TAGS{
+        int _id PK
+        string name
+    }
 USER_LANGUAGES}o--o{LANGUAGES: can_have
 USER_LANGUAGES}o--o{USER: can_have
     USER_LANGUAGES{
@@ -136,5 +140,11 @@ OSP_ISSUES}o--||OSP :has
         string title
         string description
         string error_logs
+    }
+OSP_TAGS}o--o{OSP :has
+    OSP_TAGS{
+        int _id PK
+        int osp_id FK
+        int tages_id FK
     }
 ```
