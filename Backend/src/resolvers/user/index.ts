@@ -41,6 +41,12 @@ export class UserResolver {
             gender: options.gender,
             createdAt: "",
             updatedAt: "",
+            title:options.title,
+            intro:options.intro, 
+            email:options.email,
+            phone_no: options.phone_no,
+            profile_urls: options.profile_urls,
+            date_of_birth: options.date_of_birth,
         })
 
         try {

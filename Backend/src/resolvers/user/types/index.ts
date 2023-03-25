@@ -5,11 +5,30 @@ import { InputType, Field, ObjectType } from "type-graphql"
 export class UserRegister {
     @Field()
     username: string
+
     @Field()
     password: string
 
     @Field()
     name: string
+
+    @Field()
+    title: string
+
+    @Field()
+    intro: string
+
+    @Field()
+    email: string
+
+    @Field()
+    phone_no:number
+
+    @Field()
+    profile_urls:string
+
+    @Field()
+    date_of_birth:string
 
     @Field()
     age: number

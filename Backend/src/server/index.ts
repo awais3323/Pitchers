@@ -26,7 +26,7 @@ const main = async () => {
     app.use(
         '/graphql',
         expressMiddleware(apolloServer, {
-            context: async ({ req, res }) => ({ em: orm.em, res: res }),
+            context: async ({ req, res }) => ({ em: orm.em, res, req }),
         }),
     );
 

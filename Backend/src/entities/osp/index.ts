@@ -1,23 +1,21 @@
+// OPEN SOURCE PROJECTS
 import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
-import { Field, Int, ObjectType } from "type-graphql";
+import { Field, ObjectType } from "type-graphql";
 
 @ObjectType()
 @Entity()
-export class User {
-    @Field(() => Int)
+export class osp {
+    @Field()
     @PrimaryKey()
-    _id!: number;
+    _id: number;
 
     @Field()
     @Property()
-    name!: string;
+    Author: string;
 
     @Field()
-    @Property({ unique: true })
-    username!: string;
-
     @Property()
-    password!: string;
+    description: string;
 
     @Field()
     @Property()
@@ -25,31 +23,35 @@ export class User {
 
     @Field()
     @Property()
-    intro: string;
+    vision: string;
 
     @Field()
     @Property()
-    email: string;
+    completeness: string;
 
     @Field()
     @Property()
-    phone_no: number;
+    category: string;
 
     @Field()
     @Property()
-    profile_urls: string;
+    repo_url: string;
 
     @Field()
     @Property()
-    gender: string;
+    issues: string;
 
-    @Field(() => Int)
+    @Field()
     @Property()
-    age!: number;
+    stars: string;
 
-    @Field(() => Int)
+    @Field()
     @Property()
-    date_of_birth: string;
+    contributors: string;
+    
+    @Field()
+    @Property()
+    type: string;
 
     @Field()
     @Property({ type: "date" })

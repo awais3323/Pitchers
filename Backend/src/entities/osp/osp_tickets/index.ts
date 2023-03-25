@@ -3,53 +3,43 @@ import { Field, Int, ObjectType } from "type-graphql";
 
 @ObjectType()
 @Entity()
-export class User {
+export class osp_languages {
+
     @Field(() => Int)
     @PrimaryKey()
     _id!: number;
 
     @Field()
     @Property()
-    name!: string;
-
-    @Field()
-    @Property({ unique: true })
-    username!: string;
-
-    @Property()
-    password!: string;
+    user_id:number
 
     @Field()
     @Property()
-    title: string;
+    title:string
 
     @Field()
     @Property()
-    intro: string;
+   description:string
 
     @Field()
     @Property()
-    email: string;
+    status:string
 
     @Field()
     @Property()
-    phone_no: number;
+    priority:number
 
     @Field()
     @Property()
-    profile_urls: string;
+    creator:string
 
     @Field()
     @Property()
-    gender: string;
+    tester:string
 
-    @Field(() => Int)
+    @Field()
     @Property()
-    age!: number;
-
-    @Field(() => Int)
-    @Property()
-    date_of_birth: string;
+    type:string
 
     @Field()
     @Property({ type: "date" })
