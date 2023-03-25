@@ -27,6 +27,7 @@ Next.js
 >```npm run dev```
 
 ## Making Diagrams:
+
 ```mermaid
 graph TD;
 A →B;
