@@ -27,4 +27,10 @@ Next.js
 >```npm run dev```
 
 ## Making Diagrams:
-this is umer and awais working from his hostel
+```mermaid
+graph TD;
+A →B;
+A →C;
+B →D;
+C →D;
+```
