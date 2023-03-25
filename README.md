@@ -31,8 +31,8 @@ All of these tables has created_at and updated_at
 ```mermaid
 erDiagram
 
-user}o--o{ languages: knows
-    user{
+USER}o--o{ LANGUAGES: knows
+    USER{
         int _id PK
         string name
         string username
@@ -45,46 +45,96 @@ user}o--o{ languages: knows
 
     }
 
-    languages{
+    LANGUAGES{
         int _id PK
         string name
 
     }
-user_languages}o--o{languages: can_have
-user_languages}o--o{user: can_have
-    user_languages{
+USER_LANGUAGES}o--o{LANGUAGES: can_have
+USER_LANGUAGES}o--o{USER: can_have
+    USER_LANGUAGES{
         int _id PK 
         int user_id FK
         int languages_id FK
 
     }
-social_profiles}o--||user: can_have
-    social_profiles{
+SOCIAL_PROFILES}o--||USER: can_have
+    SOCIAL_PROFILES{
         int _id PK 
         string name
 
     }
-user_social_profiles}o--||      user: can_have
-user_social_profiles}o--o{social_profiles: can_have
-    user_social_profiles{
+USER_SOCIAL_PROFILES}o--||USER: can_have
+USER_SOCIAL_PROFILES}o--o{SOCIAL_PROFILES: can_have
+    USER_SOCIAL_PROFILES{
         int _id PK 
         int social_profiles Fk
         string username
         string url 
 
     }
-user}o--o{hobbies :has 
-
-    hobbies{
+USER}o--o{HOBBIES :has 
+    HOBBIES{
         int _id PK 
         string name
     }
-user_hobbies}o--o{hobbies :has 
-user_hobbies}o--o{user:has 
-    user_hobbies{
+USER_HOBBIES}o--o{HOBBIES :has 
+USER_HOBBIES}o--o{USER:has 
+    USER_HOBBIES{
         int _id PK 
         int hobbies_id FK
         int user_id FK
 
+    }
+USER||--o{OSP :has
+LANGUAGES}o--o{OSP :has
+    OSP{
+        int _id PK
+        string author 
+        string description
+        string title
+        string vision
+        string completeness
+        string category
+        string repo_url
+        string stars
+    }
+OSP_CONTRIBUTORS}o--o{OSP :has
+    OSP_CONTRIBUTORS{
+        int _id PK
+        int user_id FK
+        int osp_id FK
+    }
+OSP_COMMENTS}o--||OSP :has
+    OSP_COMMENTS{
+        int _id PK
+        int user_id FK
+        string comment
+    }
+OSP_TICKETS}o--||OSP :has
+    OSP_TICKETS{
+        int _id PK
+        int user_id FK
+        int osp_id FK
+        string title
+        string description
+        string status
+        number priority 
+        string type
+    }
+OSP_LANGUAGES}o--o{OSP :has
+OSP_LANGUAGES}o--o{LANGUAGES :has
+    OSP_LANGUAGES{
+        int _id PK
+        int language_id FK
+        int osp_id FK
+    }
+OSP_ISSUES}o--||OSP :has
+    OSP_ISSUES{
+        int _id PK
+        int osp_id FK
+        string title
+        string description
+        string error_logs
     }
 ```
