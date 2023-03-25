@@ -123,7 +123,7 @@ OSP_TICKETS}o--||OSP :has
         string title
         string description
         string status
-        number priority 
+        int priority 
         string type
     }
 OSP_TICKET_LANGUAGES}o--o{OSP_TICKETS :has
@@ -134,7 +134,7 @@ OSP_TICKET_LANGUAGES}o--o{LANGUAGES :has
         int osp_ticket_id FK
     }
 OSP_TICKET_TAGS}o--o{OSP_TICKETS :has
-OSP_TICKET_TAGS}o--o{TAGS:has
+OSP_TICKET_TAGS}o--o{TAGS :has
     OSP_TICKET_TAGS{
         int _id PK
         int tags_id FK
@@ -165,7 +165,38 @@ OSP_ISSUES}o--||OSP :has
 OSP_TAGS}o--o{OSP :has
     OSP_TAGS{
         int _id PK
-        int osp_id FK
-        int tages_id FK
+        int osp_id FK 
     }
-```
+USER||--o{ POSTS: knows
+POSTS}o--o{ TAGS: knows
+POSTS}o--o{ REACTIONS: knows
+    POSTS{
+        int _id PK
+        int user_id FK
+        string title
+        string content
+        int views
+    }
+POST_COMMENTS}o--|| POSTS: knows
+    POST_COMMENTS{
+        int _id PK
+        int user_id FK
+        string comment
+    }
+POST_TAGS}o--o{ POSTS: knows
+POST_TAGS}o--o{ TAGS: knows
+    POST_TAGS{
+        int _id PK
+        int tags_id
+    }
+POST_REACTIONS}o--o{ POSTS: knows
+POST_REACTIONS}o--o{ REACTIONS: knows
+    POST_REACTIONS{
+        int id PK
+        int user_id FK
+        int reaction_id FK
+    }
+    REACTIONS{
+        int id PK
+        string name
+    }
