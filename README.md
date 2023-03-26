@@ -168,7 +168,7 @@ OSP_TAGS}o--o{OSP :has
         int osp_id FK 
     }
 USER||--o{ POSTS: knows
-POSTS}o--o{ TAGS: knows
+POSTS }o--o{ TAGS: knows
 POSTS}o--o{ REACTIONS: knows
     POSTS{
         int _id PK
