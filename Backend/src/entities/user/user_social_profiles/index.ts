@@ -3,7 +3,7 @@ import { Field, Int, ObjectType } from "type-graphql";
 
 @ObjectType()
 @Entity()
-export class Langauges {
+export class User_Social_Profiles{
 
     @Field(() => Int)
     @PrimaryKey()
@@ -11,7 +11,15 @@ export class Langauges {
 
     @Field()
     @Property()
-    name: string;
+    user_id: number
+
+    @Field()
+    @Property()
+    social_profile_id: number
+
+    @Field()
+    @Property()
+    url: number
 
     @Field()
     @Property({ type: "date" })

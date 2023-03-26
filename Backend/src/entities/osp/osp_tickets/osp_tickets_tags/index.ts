@@ -3,7 +3,7 @@ import { Field, Int, ObjectType } from "type-graphql";
 
 @ObjectType()
 @Entity()
-export class osp_tickets_tags{
+export class Osp_Tickets_Tags{
 
     @Field(() => Int)
     @PrimaryKey()

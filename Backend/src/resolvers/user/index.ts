@@ -1,7 +1,7 @@
 import argon2 from "argon2";
 import { User } from "entities/user";
 import { Arg, Ctx, Mutation, Query, Resolver } from "type-graphql";
-import { MyContext } from "config/mikro-orrm-config/types";
+import { MyContext } from "mikro-orm-config-types";
 import { sendToken } from "utils/jwt";
 import { LoginUser, UserRegister, UserResponse } from "./types";
 import { isAuthenticatedUser } from "middleware/auth";

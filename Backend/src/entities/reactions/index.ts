@@ -3,20 +3,16 @@ import { Field, Int, ObjectType } from "type-graphql";
 
 @ObjectType()
 @Entity()
-export class osp_languages {
-    
+export class Reactions{
+
     @Field(() => Int)
     @PrimaryKey()
     _id!: number;
 
     @Field()
     @Property()
-    osp_id:number
+    name:number
 
-    @Field()
-    @Property()
-    user_id:number
-    
     @Field()
     @Property({ type: "date" })
     createdAt: Date = new Date();

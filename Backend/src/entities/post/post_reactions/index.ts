@@ -3,7 +3,7 @@ import { Field, Int, ObjectType } from "type-graphql";
 
 @ObjectType()
 @Entity()
-export class Langauges {
+export class Post_Reactions{
 
     @Field(() => Int)
     @PrimaryKey()
@@ -11,7 +11,11 @@ export class Langauges {
 
     @Field()
     @Property()
-    name: string;
+    post_id:number
+
+    @Field()
+    @Property()
+    reaction_id:number
 
     @Field()
     @Property({ type: "date" })

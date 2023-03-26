@@ -4,7 +4,7 @@ import { Field, ObjectType } from "type-graphql";
 
 @ObjectType()
 @Entity()
-export class osp {
+export class Osp {
     @Field()
     @PrimaryKey()
     _id: number;

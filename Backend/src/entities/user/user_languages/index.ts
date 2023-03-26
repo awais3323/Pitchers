@@ -3,7 +3,7 @@ import { Field, Int, ObjectType } from "type-graphql";
 
 @ObjectType()
 @Entity()
-export class user_languages {
+export class User_Languages {
 
     @Field(() => Int)
     @PrimaryKey()

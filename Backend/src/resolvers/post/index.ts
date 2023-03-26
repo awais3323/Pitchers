@@ -1,7 +1,7 @@
 import { Post } from "entities/post";
 import { Int, Resolver } from "type-graphql";
 import { Arg, Ctx, Mutation, Query } from "type-graphql/dist/decorators";
-import { MyContext } from "config/mikro-orrm-config/types";
+import { MyContext } from "mikro-orm-config-types";
 import { isAuthenticatedUser } from "middleware/auth";
 
 @Resolver()

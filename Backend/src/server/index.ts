@@ -1,6 +1,6 @@
 import { MikroORM } from "@mikro-orm/core"
 import __prod__ from "constants"
-import mikroOrmConfig from "config/mikro-orrm-config"
+import mikroOrmConfig from "mikro-orm.config"
 import { buildSchema } from "type-graphql"
 import { HelloResolver } from "resolvers/hello"
 import { PostResolver } from "resolvers/post"

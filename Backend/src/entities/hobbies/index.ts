@@ -3,7 +3,7 @@ import { Field, Int, ObjectType } from "type-graphql";
 
 @ObjectType()
 @Entity()
-export class Langauges {
+export class Hobbies{
 
     @Field(() => Int)
     @PrimaryKey()
@@ -11,7 +11,7 @@ export class Langauges {
 
     @Field()
     @Property()
-    name: string;
+    name:number
 
     @Field()
     @Property({ type: "date" })
