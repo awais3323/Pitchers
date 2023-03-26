@@ -21,6 +21,14 @@ const main = async () => {
             validate: false
         }),
     })
+    
+    await apolloServer.start();
+    app.use(
+        '/graphql',
+        expressMiddleware(apolloServer, {
+            context: async ({ req, res }) => ({ em: orm.em, res: res }),
+        }),
+    );
 
     await apolloServer.start();
     app.use(
