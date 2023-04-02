@@ -1,6 +1,6 @@
-import { MikroORM } from "@mikro-orm/core"
+import "reflect-metadata"
 import __prod__ from "constants"
-import mikroOrmConfig from "mikro-orm.config"
+import { appDataSource } from "database/dbConnection"
 import { buildSchema } from "type-graphql"
 import { HelloResolver } from "resolvers/hello"
 import { PostResolver } from "resolvers/post"
@@ -10,9 +10,7 @@ import { expressMiddleware } from '@apollo/server/express4';
 import { app } from "./app"
 
 const main = async () => {
-
-    const orm = await MikroORM.init(mikroOrmConfig);
-    await orm.isConnected()
+    await appDataSource.initialize().then(() => console.log("Database is connected ..... Ok"))
 
     let port = 3000;
     const apolloServer = new ApolloServer({
@@ -21,20 +19,12 @@ const main = async () => {
             validate: false
         }),
     })
-    
-    await apolloServer.start();
-    app.use(
-        '/graphql',
-        expressMiddleware(apolloServer, {
-            context: async ({ req, res }) => ({ em: orm.em, res, req }),
-        }),
-    );
 
     await apolloServer.start();
     app.use(
         '/graphql',
         expressMiddleware(apolloServer, {
-            context: async ({ req, res }) => ({ em: orm.em, res: res, req: req }),
+            context: async ({ req, res }) => ({res, req }),
         }),
     );
 
@@ -43,7 +33,7 @@ const main = async () => {
     })
 
     app.listen(port, () => {
-        console.log(`App is running .... port ${port}`)
+        console.log(`App is running on ${port} ..... OK`)
     })
 }
 

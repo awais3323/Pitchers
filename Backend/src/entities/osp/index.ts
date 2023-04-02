@@ -1,63 +1,63 @@
 // OPEN SOURCE PROJECTS
-import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
 import { Field, ObjectType } from "type-graphql";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @ObjectType()
 @Entity()
 export class Osp {
     @Field()
-    @PrimaryKey()
+    @PrimaryGeneratedColumn()
     _id: number;
 
     @Field()
-    @Property()
+    @Column()
     Author: string;
 
     @Field()
-    @Property()
+    @Column()
     description: string;
 
     @Field()
-    @Property()
+    @Column()
     title: string;
 
     @Field()
-    @Property()
+    @Column()
     vision: string;
 
     @Field()
-    @Property()
+    @Column()
     completeness: string;
 
     @Field()
-    @Property()
+    @Column()
     category: string;
 
     @Field()
-    @Property()
+    @Column()
     repo_url: string;
 
     @Field()
-    @Property()
+    @Column()
     issues: string;
 
     @Field()
-    @Property()
+    @Column()
     stars: string;
 
     @Field()
-    @Property()
+    @Column()
     contributors: string;
     
     @Field()
-    @Property()
+    @Column()
     type: string;
 
     @Field()
-    @Property({ type: "date" })
-    createdAt: Date = new Date();
+        @CreateDateColumn()
+    createdAt: Date;
 
     @Field()
-    @Property({ type: "date", onUpdate: () => new Date() })
-    updatedAt: Date = new Date();
+    @UpdateDateColumn()
+    updatedAt: Date;
 }

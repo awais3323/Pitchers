@@ -11,12 +11,6 @@ Next.js
  You must have postgres installed on your local
 
 
-## run the migrations:
-
->```npx mikro-orm migration:create```< OR >```npm run create:migration```
-
->``` npx mikro-orm migration:up```< OR  > ```npm run up:migration```
-
 
 ## Make the build:
 
@@ -25,6 +19,10 @@ Next.js
 ## Run server:
 
 >```npm run dev```
+
+## run the migrations:
+
+>```TypeOrm will run migrations```
 
 ## Database Structure:
 All of these tables has created_at and updated_at

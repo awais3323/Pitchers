@@ -1,31 +1,31 @@
-import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
 import { Field, Int, ObjectType } from "type-graphql";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @ObjectType()
 @Entity()
 export class Osp_Comments {
-    
+
     @Field(() => Int)
-    @PrimaryKey()
+    @PrimaryGeneratedColumn()
     _id!: number;
 
     @Field()
-    @Property()
-    osp_id:number
+    @Column()
+    osp_id: number
 
     @Field()
-    @Property()
-    user_id:number
-    
-    @Field()
-    @Property()
-    comment:string
-    
-    @Field()
-    @Property({ type: "date" })
-    createdAt: Date = new Date();
+    @Column()
+    user_id: number
 
     @Field()
-    @Property({ type: "date", onUpdate: () => new Date() })
-    updatedAt: Date = new Date();
+    @Column()
+    comment: string
+
+    @Field()
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @Field()
+    @UpdateDateColumn()
+    updatedAt: Date;
 }

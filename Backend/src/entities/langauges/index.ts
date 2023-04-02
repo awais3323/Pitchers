@@ -1,23 +1,23 @@
-import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
 import { Field, Int, ObjectType } from "type-graphql";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @ObjectType()
 @Entity()
 export class Langauges {
 
     @Field(() => Int)
-    @PrimaryKey()
+    @PrimaryGeneratedColumn()
     _id!: number;
 
     @Field()
-    @Property()
+    @Column()
     name: string;
 
     @Field()
-    @Property({ type: "date" })
-    createdAt: Date = new Date();
+        @CreateDateColumn()
+    createdAt: Date;
 
     @Field()
-    @Property({ type: "date", onUpdate: () => new Date() })
-    updatedAt: Date = new Date();
+    @UpdateDateColumn()
+    updatedAt: Date;
 }

@@ -1,35 +1,35 @@
-import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
 import { Field, Int, ObjectType } from "type-graphql";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @ObjectType()
 @Entity()
 export class Osp_Issues {
 
     @Field(() => Int)
-    @PrimaryKey()
+    @PrimaryGeneratedColumn()
     _id!: number;
 
     @Field()
-    @Property()
+    @Column()
     osp_id: number
 
     @Field()
-    @Property()
+    @Column()
     title: number
 
     @Field()
-    @Property()
+    @Column()
     description: number
 
     @Field()
-    @Property()
+    @Column()
     error_log: number
 
     @Field()
-    @Property({ type: "date" })
-    createdAt: Date = new Date();
+        @CreateDateColumn()
+    createdAt: Date;
 
     @Field()
-    @Property({ type: "date", onUpdate: () => new Date() })
-    updatedAt: Date = new Date();
+    @UpdateDateColumn()
+    updatedAt: Date;
 }

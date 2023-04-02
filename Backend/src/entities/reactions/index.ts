@@ -1,23 +1,23 @@
-import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
 import { Field, Int, ObjectType } from "type-graphql";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @ObjectType()
 @Entity()
 export class Reactions{
 
     @Field(() => Int)
-    @PrimaryKey()
+    @PrimaryGeneratedColumn()
     _id!: number;
 
     @Field()
-    @Property()
+    @Column()
     name:number
 
     @Field()
-    @Property({ type: "date" })
-    createdAt: Date = new Date();
+        @CreateDateColumn()
+    createdAt: Date;
 
     @Field()
-    @Property({ type: "date", onUpdate: () => new Date() })
-    updatedAt: Date = new Date();
+    @UpdateDateColumn()
+    updatedAt: Date;
 }

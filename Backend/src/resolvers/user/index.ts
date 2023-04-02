@@ -1,8 +1,8 @@
 import argon2 from "argon2";
 import { User } from "entities/user";
 import { Arg, Ctx, Mutation, Query, Resolver } from "type-graphql";
-import { MyContext } from "mikro-orm-config-types";
 import { sendToken } from "utils/jwt";
+import { MyContext } from "types";
 import { LoginUser, UserRegister, UserResponse } from "./types";
 import { isAuthenticatedUser } from "middleware/auth";
 
@@ -11,7 +11,7 @@ export class UserResolver {
     @Mutation(() => UserResponse)
     async registeUser(
         @Arg("options") options: UserRegister,
-        @Ctx() { em, res }: MyContext): Promise<UserResponse> {
+        @Ctx() { res }: MyContext): Promise<UserResponse | undefined> {
         if (options.username.length <= 3) { //username length issue
             return {
                 errors: [{
@@ -33,45 +33,43 @@ export class UserResolver {
         }
 
         const hashedPassword = await argon2.hash(options.password)
-        let user = em.create(User, {
-            username: options.username,
-            password: hashedPassword,
-            name: options.name,
-            age: options.age,
-            gender: options.gender,
-            createdAt: "",
-            updatedAt: "",
-            title:options.title,
-            intro:options.intro, 
-            email:options.email,
-            phone_no: options.phone_no,
-            profile_urls: options.profile_urls,
-            date_of_birth: options.date_of_birth,
-        })
-
-        try {
-            await em.persistAndFlush(user)
-        } catch (err) {
-            if (err.code === "23505") { // If the username is already taken
-                return {
-                    errors: [{
-                        field: "Username",
-                        message: "Username is unavailable"
-                    }]
-                }
+        let user;
+        const checkUser = await User.findOne({ where: { username: options.username } })
+        if (checkUser) {
+            return {
+                errors: [{
+                    field: 'username',
+                    message: 'Username is unavailable',
+                }],
             }
+        } else {
+            user = User.create({
+                _id: Math.floor(Math.random() * 900000) + 100000,
+                username: options.username,
+                password: hashedPassword,
+                name: options.name,
+                age: options.age,
+                gender: options.gender,
+                title: options.title,
+                intro: options.intro,
+                email: options.email,
+                phone_no: options.phone_no,
+                profile_urls: options.profile_urls,
+                date_of_birth: options.date_of_birth,
+            })
+            user?.save()
+            sendToken(res, user, 200)
         }
-
-        sendToken(res, user, 200)
         return { user };
+
     }
 
     @Mutation(() => UserResponse)
     async loginUser(
         @Arg("options") options: LoginUser,
-        @Ctx() { em, res }: MyContext): Promise<UserResponse> {
-
-        let user = await em.findOne(User, { username: options.username })
+        @Ctx() { res }: MyContext): Promise<UserResponse> {
+        const { username } = options
+        let user = await User.findOne({ where: { username } })
         if (!user) { // if there is no user
             return {
                 errors: [{
@@ -94,14 +92,15 @@ export class UserResolver {
     }
     @Query(() => User, { nullable: true })
     async me(
-        @Ctx() { em, req }: MyContext
+        @Ctx() { req }: MyContext
     ) {
-        await isAuthenticatedUser(req, em)
+        await isAuthenticatedUser(req)
         if (!req.user) {
             return null
         }
-
-       const user = em.findOne(User, {_id:req.user._id})
-       return user;
+        const { _id } = req.user;
+        const user = User.findOne({ where: { _id } })
+        return user;
     }
+
 }

@@ -1,51 +1,51 @@
-import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
 import { Field, Int, ObjectType } from "type-graphql";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @ObjectType()
 @Entity()
 export class Osp_Tickets{
 
     @Field(() => Int)
-    @PrimaryKey()
+    @PrimaryGeneratedColumn()
     _id!: number;
 
     @Field()
-    @Property()
+    @Column()
     user_id:number
 
     @Field()
-    @Property()
+    @Column()
     title:string
 
     @Field()
-    @Property()
+    @Column()
    description:string
 
     @Field()
-    @Property()
+    @Column()
     status:string
 
     @Field()
-    @Property()
+    @Column()
     priority:number
 
     @Field()
-    @Property()
+    @Column()
     creator:string
 
     @Field()
-    @Property()
+    @Column()
     tester:string
 
     @Field()
-    @Property()
+    @Column()
     type:string
 
     @Field()
-    @Property({ type: "date" })
-    createdAt: Date = new Date();
+        @CreateDateColumn()
+    createdAt: Date;
 
     @Field()
-    @Property({ type: "date", onUpdate: () => new Date() })
-    updatedAt: Date = new Date();
+    @UpdateDateColumn()
+    updatedAt: Date;
 }

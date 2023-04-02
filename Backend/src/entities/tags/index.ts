@@ -1,14 +1,14 @@
-import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
 import { Field, Int, ObjectType } from "type-graphql";
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @ObjectType()
 @Entity()
 export class Tags {
     @Field(() => Int)
-    @PrimaryKey()
+    @PrimaryGeneratedColumn()
     _id!: number
 
     @Field()
-    @Property()
+    @Column()
     name: string
 }
