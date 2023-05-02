@@ -1,10 +1,13 @@
 import { Field, Int, ObjectType } from "type-graphql";
-import { Entity } from "typeorm";
+import { Entity, JoinTable, ManyToMany, OneToMany } from "typeorm";
 import { Column } from "typeorm/decorator/columns/Column";
 import { CreateDateColumn } from "typeorm/decorator/columns/CreateDateColumn";
 import { ObjectIdColumn } from "typeorm/decorator/columns/ObjectIdColumn";
 import { UpdateDateColumn } from "typeorm/decorator/columns/UpdateDateColumn";
 import { BaseEntity } from "typeorm/repository/BaseEntity";
+import {Languages} from "entities/langauges"
+import { UserLanguages } from "./user_languages";
+
 
 @ObjectType()
 @Entity()
@@ -55,6 +58,13 @@ export class User extends BaseEntity {
     @Field(() => Int)
     @Column()
     date_of_birth: string;
+
+    @ManyToMany(() => Languages, (language) => language.users)
+    @JoinTable()
+    languages: Languages[];
+
+    @OneToMany(() => UserLanguages, (userLanguage) => userLanguage.language)
+    userLanguages: UserLanguages[];
 
     @Field()
     @CreateDateColumn()

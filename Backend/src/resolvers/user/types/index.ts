@@ -35,6 +35,9 @@ export class UserRegister {
 
     @Field()
     gender: string
+
+    @Field(()=>[Number])
+    languages: number[]
 }
 
 @InputType()

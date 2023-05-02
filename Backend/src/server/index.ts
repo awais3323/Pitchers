@@ -8,6 +8,7 @@ import { UserResolver } from "resolvers/user"
 import { ApolloServer } from "@apollo/server"
 import { expressMiddleware } from '@apollo/server/express4';
 import { app } from "./app"
+import { LanguageResolver } from "resolvers/languages"
 
 const main = async () => {
     await appDataSource.initialize().then(() => console.log("Database is connected ..... Ok"))
@@ -15,7 +16,7 @@ const main = async () => {
     let port = 3000;
     const apolloServer = new ApolloServer({
         schema: await buildSchema({
-            resolvers: [HelloResolver, PostResolver, UserResolver],
+            resolvers: [HelloResolver, PostResolver, UserResolver, LanguageResolver],
             validate: false
         }),
     })
