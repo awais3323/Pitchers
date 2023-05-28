@@ -1,9 +1,11 @@
 import { Field, Int, ObjectType } from "type-graphql";
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { User } from "..";
+import { SocialProfiles } from "entities/social_profiles";
 
 @ObjectType()
 @Entity()
-export class User_Social_Profiles {
+export class UserSocialProfiles extends BaseEntity{
 
     @Field(() => Int)
     @PrimaryGeneratedColumn()
@@ -19,7 +21,15 @@ export class User_Social_Profiles {
 
     @Field()
     @Column()
-    url: number
+    url:string 
+
+    @ManyToOne(() => User, (user) => user.hobbies, { cascade: true })
+    @JoinColumn({ name: "user_id" })
+    user: User;
+
+    @ManyToOne(() => SocialProfiles, (SP) => SP, { cascade: true })
+    @JoinColumn({ name: "social_profile_id" })
+    social_profile: SocialProfiles;
 
     @Field()
     @CreateDateColumn()

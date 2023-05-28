@@ -1,6 +1,17 @@
 import { User } from "entities/user"
 import { InputType, Field, ObjectType } from "type-graphql"
 
+
+@InputType()
+class profileInput {
+
+    @Field(() => [Number])
+    social_profiles: number[]
+
+    @Field(() => [String])
+    url: string[]
+}
+
 @InputType()
 export class UserRegister {
     @Field()
@@ -22,13 +33,13 @@ export class UserRegister {
     email: string
 
     @Field()
-    phone_no:number
+    phone_no: number
 
     @Field()
-    profile_urls:string
+    profile_urls: string
 
     @Field()
-    date_of_birth:string
+    date_of_birth: string
 
     @Field()
     age: number
@@ -36,15 +47,21 @@ export class UserRegister {
     @Field()
     gender: string
 
-    @Field(()=>[Number])
+    @Field(() => [Number])
     languages: number[]
+
+    @Field(() => [Number])
+    hobbies: number[]
+
+    @Field()
+    social_profiles:profileInput 
 }
 
 @InputType()
 export class LoginUser {
     @Field()
     username: string
-    
+
     @Field()
     password: string
 }

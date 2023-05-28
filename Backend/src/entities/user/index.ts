@@ -7,6 +7,10 @@ import { UpdateDateColumn } from "typeorm/decorator/columns/UpdateDateColumn";
 import { BaseEntity } from "typeorm/repository/BaseEntity";
 import {Languages} from "entities/langauges"
 import { UserLanguages } from "./user_languages";
+import { Hobbies } from "entities/hobbies";
+import { UserHobbies } from "./user_hobbies";
+import { SocialProfiles } from "entities/social_profiles";
+import { UserSocialProfiles } from "./user_social_profiles";
 
 
 @ObjectType()
@@ -64,7 +68,21 @@ export class User extends BaseEntity {
     languages: Languages[];
 
     @OneToMany(() => UserLanguages, (userLanguage) => userLanguage.language)
-    userLanguages: UserLanguages[];
+    user_languages: UserLanguages[];
+
+    @ManyToMany(() => Hobbies, (hobby) => hobby.users)
+    @JoinTable()
+    hobbies: Hobbies[];
+
+    @OneToMany(() => UserHobbies, (userHobby) => userHobby.hobby)
+    user_hobbies: UserHobbies[];
+
+    @ManyToMany(() => SocialProfiles, (SP) => SP.users)
+    @JoinTable()
+    social_profile: SocialProfiles[];
+
+    @OneToMany(() => UserSocialProfiles, (SP) => SP.social_profile)
+    user_social_profile: UserSocialProfiles[];
 
     @Field()
     @CreateDateColumn()

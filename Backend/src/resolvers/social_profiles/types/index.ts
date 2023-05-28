@@ -1,4 +1,4 @@
-import { Social_Profiles } from "entities/social_profiles"
+import { SocialProfiles } from "entities/social_profiles"
 import { InputType, Field } from "type-graphql"
 
 @InputType()
@@ -19,5 +19,5 @@ export class GetSocialProfiles {
     message: string
 
     @Field()
-    socialProfiles: Social_Profiles[]
+    socialProfiles: SocialProfiles[]
 }

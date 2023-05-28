@@ -16,12 +16,12 @@ import { Post_Comments } from "entities/post/post_comments";
 import { Post_Reactions } from "entities/post/post_reactions";
 import { Post_Tags } from "entities/post/post_tags";
 import { Reactions } from "entities/reactions";
-import { Social_Profiles } from "entities/social_profiles";
+import { SocialProfiles } from "entities/social_profiles";
 import { Tags } from "entities/tags";
 import { User } from "entities/user";
-import { User_Hobbies } from "entities/user/user_hobbies";
+import { UserHobbies } from "entities/user/user_hobbies";
 import { UserLanguages } from "entities/user/user_languages";
-import { User_Social_Profiles } from "entities/user/user_social_profiles";
+import { UserSocialProfiles } from "entities/user/user_social_profiles";
 import { DataSource } from "typeorm";
 
 export const appDataSource = new DataSource({
@@ -38,8 +38,8 @@ export const appDataSource = new DataSource({
         Post_Comments,
         User,
         UserLanguages,
-        User_Social_Profiles,
-        User_Hobbies,
+        UserSocialProfiles,
+        UserHobbies,
         Osp,
         Osp_Contributers,
         Osp_Issues,
@@ -53,7 +53,7 @@ export const appDataSource = new DataSource({
         Languages,
         Tags,
         Hobbies,
-        Social_Profiles,
+        SocialProfiles,
         Reactions,
     ],
 })

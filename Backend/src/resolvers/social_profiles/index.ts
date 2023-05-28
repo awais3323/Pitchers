@@ -1,7 +1,7 @@
 import { Mutation, Query, Resolver } from "type-graphql";
 import { socialMediaNames } from "./Seed";
 import { CreateSocialProfiles, GetSocialProfiles } from "./types";
-import { Social_Profiles } from "entities/social_profiles";
+import { SocialProfiles } from "entities/social_profiles";
 
 @Resolver()
 export class SocialProfileResolver{
@@ -10,7 +10,7 @@ export class SocialProfileResolver{
         try {
             let socialProfile;
             socialMediaNames.forEach((ele) => {
-                socialProfile = Social_Profiles.create({
+                socialProfile = SocialProfiles.create({
                     _id: Math.floor(Math.random() * 900000) + 100000,
                     name: ele,
                 })
@@ -25,7 +25,7 @@ export class SocialProfileResolver{
     @Query(() => String)
     async getSocialProfiles(): Promise<GetSocialProfiles> {
         try {
-            let socialProfile = await Social_Profiles.find();
+            let socialProfile = await SocialProfiles.find();
             return { status: "success", message: `All the social profiles are fetched`, socialProfiles: socialProfile }
         }
         catch (error) {
