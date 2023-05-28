@@ -1,9 +1,9 @@
 import { Field, Int, ObjectType } from "type-graphql";
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BaseEntity } from "typeorm";
 
 @ObjectType()
 @Entity()
-export class Social_Profiles{
+export class Social_Profiles extends BaseEntity {
 
     @Field(() => Int)
     @PrimaryGeneratedColumn()
@@ -11,10 +11,10 @@ export class Social_Profiles{
 
     @Field()
     @Column()
-    name:number
+    name: string;
 
     @Field()
-        @CreateDateColumn()
+    @CreateDateColumn()
     createdAt: Date;
 
     @Field()

@@ -6,9 +6,11 @@ import { HelloResolver } from "resolvers/hello"
 import { PostResolver } from "resolvers/post"
 import { UserResolver } from "resolvers/user"
 import { ApolloServer } from "@apollo/server"
+import { LanguageResolver } from "resolvers/languages"
+import { HobbiesResolver } from "resolvers/hobbies"
+import { SocialProfileResolver } from "resolvers/social_profiles"
 import { expressMiddleware } from '@apollo/server/express4';
 import { app } from "./app"
-import { LanguageResolver } from "resolvers/languages"
 
 const main = async () => {
     await appDataSource.initialize().then(() => console.log("Database is connected ..... Ok"))
@@ -16,7 +18,7 @@ const main = async () => {
     let port = 3000;
     const apolloServer = new ApolloServer({
         schema: await buildSchema({
-            resolvers: [HelloResolver, PostResolver, UserResolver, LanguageResolver],
+            resolvers: [HelloResolver, PostResolver, UserResolver, LanguageResolver, HobbiesResolver, SocialProfileResolver],
             validate: false
         }),
     })
@@ -25,7 +27,7 @@ const main = async () => {
     app.use(
         '/graphql',
         expressMiddleware(apolloServer, {
-            context: async ({ req, res }) => ({res, req }),
+            context: async ({ req, res }) => ({ res, req }),
         }),
     );
 

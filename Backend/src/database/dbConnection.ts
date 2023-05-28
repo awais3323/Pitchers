@@ -57,4 +57,3 @@ export const appDataSource = new DataSource({
         Reactions,
     ],
 })
-// export default config;

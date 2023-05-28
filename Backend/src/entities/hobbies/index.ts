@@ -1,20 +1,19 @@
 import { Field, Int, ObjectType } from "type-graphql";
-import { PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, Entity } from "typeorm";
+import { PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, Entity, BaseEntity } from "typeorm";
 
 @ObjectType()
 @Entity()
-export class Hobbies{
-
+export class Hobbies extends BaseEntity{
     @Field(() => Int)
     @PrimaryGeneratedColumn()
     _id!: number;
 
     @Field()
     @Column()
-    name:number
+    name: string
 
     @Field()
-        @CreateDateColumn()
+    @CreateDateColumn()
     createdAt: Date;
 
     @Field()
