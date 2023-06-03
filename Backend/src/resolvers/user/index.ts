@@ -59,6 +59,8 @@ export class UserResolver {
       // Hash the password
       const hashedPassword = await argon2.hash(options.password);
 
+      const hashedToken = options.github_token.length > 0? await argon2.hash(options.github_token): "";
+
       // Create the user entity
       let userId = Math.floor(Math.random() * 900000) + 100000;
       const user = User.create({
@@ -72,6 +74,7 @@ export class UserResolver {
         intro: options.intro,
         email: options.email,
         phone_no: options.phone_no,
+        git_token: hashedToken,
         profile_urls: options.profile_urls,
         date_of_birth: options.date_of_birth,
       });

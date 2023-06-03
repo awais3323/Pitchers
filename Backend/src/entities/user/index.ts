@@ -5,7 +5,7 @@ import { CreateDateColumn } from "typeorm/decorator/columns/CreateDateColumn";
 import { ObjectIdColumn } from "typeorm/decorator/columns/ObjectIdColumn";
 import { UpdateDateColumn } from "typeorm/decorator/columns/UpdateDateColumn";
 import { BaseEntity } from "typeorm/repository/BaseEntity";
-import {Languages} from "entities/langauges"
+import { Languages } from "entities/langauges"
 import { UserLanguages } from "./user_languages";
 import { Hobbies } from "entities/hobbies";
 import { UserHobbies } from "./user_hobbies";
@@ -17,7 +17,7 @@ import { UserSocialProfiles } from "./user_social_profiles";
 @Entity()
 export class User extends BaseEntity {
     @Field()
-    @ObjectIdColumn({type:"int"})
+    @ObjectIdColumn({ type: "int" })
     _id!: number;
 
     @Field()
@@ -30,6 +30,9 @@ export class User extends BaseEntity {
 
     @Column()
     password!: string;
+
+    @Column({ nullable: true })
+    git_token: string;
 
     @Field()
     @Column()

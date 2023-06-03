@@ -21,6 +21,9 @@ export class UserRegister {
     password: string
 
     @Field()
+    github_token: string
+
+    @Field()
     name: string
 
     @Field()
