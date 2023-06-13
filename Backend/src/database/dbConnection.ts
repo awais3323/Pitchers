@@ -19,6 +19,8 @@ import { Reactions } from "entities/reactions";
 import { SocialProfiles } from "entities/social_profiles";
 import { Tags } from "entities/tags";
 import { User } from "entities/user";
+import { UserEducations } from "entities/user/user_education";
+import { UserExperiences } from "entities/user/user_experiences";
 import { UserHobbies } from "entities/user/user_hobbies";
 import { UserLanguages } from "entities/user/user_languages";
 import { UserSocialProfiles } from "entities/user/user_social_profiles";
@@ -30,7 +32,7 @@ export const appDataSource = new DataSource({
     username: "postgres",
     password: "3813323",
     logging: true,
-    synchronize: true,
+    // synchronize: true,
     entities: [
         Post,
         Post_Tags,
@@ -39,6 +41,8 @@ export const appDataSource = new DataSource({
         User,
         UserLanguages,
         UserSocialProfiles,
+        UserExperiences,
+        UserEducations,
         UserHobbies,
         Osp,
         Osp_Contributers,

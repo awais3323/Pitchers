@@ -11,6 +11,8 @@ import { Hobbies } from "entities/hobbies";
 import { UserHobbies } from "./user_hobbies";
 import { SocialProfiles } from "entities/social_profiles";
 import { UserSocialProfiles } from "./user_social_profiles";
+import { UserEducations } from "./user_education";
+import { UserExperiences } from "./user_experiences";
 
 
 @ObjectType()
@@ -49,11 +51,7 @@ export class User extends BaseEntity {
     @Field()
     @Column()
     phone_no: number;
-
-    @Field()
-    @Column()
-    profile_urls: string;
-
+    
     @Field()
     @Column()
     gender: string;
@@ -72,6 +70,13 @@ export class User extends BaseEntity {
 
     @OneToMany(() => UserLanguages, (userLanguage) => userLanguage.language)
     user_languages: UserLanguages[];
+
+
+    @OneToMany(() => UserEducations, (userEd) => userEd.users)
+    user_educations: UserEducations[];
+
+    @OneToMany(() => UserExperiences, (userEx) => userEx.users)
+    user_experiences: UserExperiences[];
 
     @ManyToMany(() => Hobbies, (hobby) => hobby.users)
     @JoinTable()
