@@ -5,6 +5,9 @@ const Navbar = () => {
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
+          <a className="navbar-brand" href="#">
+            Navbar
+          </a>
           <button
             className="navbar-toggler"
             type="button"
@@ -63,6 +66,9 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
+          <button className="log-sign-btn" id="log-sign">
+            Log / Sign
+          </button>
         </div>
       </nav>
     </>

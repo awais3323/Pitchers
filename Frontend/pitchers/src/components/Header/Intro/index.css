@@ -7,6 +7,11 @@
     justify-content: center;
 }
 
+.highlight-main-head{
+    background-color:#212529;
+    color: white;
+}
+
 .app-name-head {
     font-family: 'Gasoek One', sans-serif;
     font-size: 8vmax;

@@ -1,3 +1,40 @@
 .navbar-nav {
     margin: auto !important;
+    padding: 0 0.9vmax ;
+}
+
+.log-sign-btn {
+    border: none;
+    outline: none;
+    padding: 0.5vmax;
+    border-radius: 5px;
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.log-sign-btn:hover {
+    background-color: #212529;
+    color: white;
+}
+
+.nav-link {
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    outline: none;
+   border: none;
+   margin: 0 0.4vmax;
+}
+
+.nav-link:hover {
+    background-color: #212529;
+    color: white !important;
+}
+.dropdown-item{
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+}
+.dropdown-item:hover{
+
+    background-color: #212529 !important;
+    color: white !important;
 }

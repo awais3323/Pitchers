@@ -17,6 +17,10 @@
 .js-center{
   justify-content: center;
 }
+
+.t-up{
+  text-transform: uppercase;
+}
 .text-main-color{
   color:#212529;
 }
