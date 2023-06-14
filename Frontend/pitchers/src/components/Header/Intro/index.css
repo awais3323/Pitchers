@@ -1,0 +1,35 @@
+.main-area {
+    width: 100%;
+    height: 40vmax;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-name-head {
+    font-family: 'Gasoek One', sans-serif;
+    font-size: 8vmax;
+    animation: bounce 1s;
+    animation-fill-mode: forwards;
+}
+
+.app-name-tags {
+    font-size: 1vmax;
+    animation: bounce 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(20%);
+    }
+
+    40% {
+        transform: translateY(-50%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}

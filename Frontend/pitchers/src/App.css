@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Gasoek+One&family=Oswald&display=swap');
+
+.d-flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+.ai-center{
+  align-items: center;
+}
+.js-center{
+  justify-content: center;
+}
+.text-main-color{
+  color:#212529;
+}
