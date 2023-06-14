@@ -9,6 +9,8 @@
     padding: 0.5vmax;
     border-radius: 5px;
     background-color: transparent;
+    color:#212529;
+    text-decoration: none;
     transition: all 0.2s ease-in-out;
 }
 

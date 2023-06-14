@@ -1,0 +1,17 @@
+.register-main {
+    margin-top: 2vmax;
+    text-align: center;
+}
+
+.register-main-head {
+    font-family: 'Gasoek One', sans-serif;
+    font-size: 4vmax;
+}
+.register-form-section{
+    margin-top: 2vmax;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}

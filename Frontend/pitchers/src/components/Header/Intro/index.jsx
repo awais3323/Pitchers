@@ -1,4 +1,3 @@
-import React from "react";
 import "./index.css";
 const Intro = () => {
   return (
@@ -12,7 +11,7 @@ const Intro = () => {
             <b>#YOURSELF</b>
           </span>
           <span className="app-name-tags text-main-color">
-          " Be the Change you want to see in this world " ~ Qoute
+           Be the Change you want to see in this world ~ Qoute
           </span>
         </div>
       </div>

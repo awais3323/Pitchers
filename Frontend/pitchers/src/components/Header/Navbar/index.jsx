@@ -1,6 +1,9 @@
-import React from "react";
 import "./index.css";
+import { Link } from "react-router-dom";
+import { barContext } from "../../../App";
+import { useContext } from "react";
 const Navbar = () => {
+  const topLoad = useContext(barContext);
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -22,9 +25,14 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/"
+                  onClick={() => topLoad()}
+                >
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">
@@ -66,9 +74,14 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <button className="log-sign-btn" id="log-sign">
+          <Link
+            className="log-sign-btn"
+            id="log-sign"
+            to="/LogSign"
+            onClick={() => topLoad()}
+          >
             Log / Sign
-          </button>
+          </Link>
         </div>
       </nav>
     </>
