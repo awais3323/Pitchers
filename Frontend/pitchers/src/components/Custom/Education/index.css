@@ -1,0 +1,12 @@
+.exp-ed-box{
+    width: 100%;
+height: 100%;
+}
+.inputs-box{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100% !important;
+    align-items: center;
+    justify-content: center;
+}

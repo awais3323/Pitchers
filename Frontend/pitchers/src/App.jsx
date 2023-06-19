@@ -7,6 +7,8 @@ import LoadingBar from "react-top-loading-bar";
 import RegisterUser from "./components/RegisterUser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoginUser from "./components/LoginUser";
+import AboutUs from "./components/AboutUs";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const barContext = createContext();
@@ -49,7 +51,9 @@ function App() {
           <Navbar />
           <Routes>
             <Route exact path="/" element={<Intro />} />
-            <Route exact path="/LogSign" element={<RegisterUser />} />
+            <Route exact path="/Sign" element={<RegisterUser />} />
+            <Route exact path="/Log" element={<LoginUser/>} />
+            <Route exact path="/AboutUs" element={<AboutUs/>} />
           </Routes>
         </barContext.Provider>
       </Router>

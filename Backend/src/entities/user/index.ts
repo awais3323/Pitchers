@@ -60,7 +60,7 @@ export class User extends BaseEntity {
     @Column()
     age!: number;
 
-    @Field(() => Int)
+    @Field()
     @Column()
     date_of_birth: string;
 

@@ -15,3 +15,42 @@
     align-items: flex-start;
     justify-content: space-evenly;
 }
+.lang-main{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 93%;
+    margin: auto;
+    /* justify-content: center; */
+}
+.lang-select-add{
+    display:flex;
+    width: 100%;
+    /* align-items: center; */
+}
+.lang-select-box{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items:self-start;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.add-button{
+    font-size: 1vmax;
+    margin-left: 1vmax;
+}
+.ex-ed-select-box{
+    width: 96%;
+    margin: auto;
+    padding: 1vmax;
+}
+.text-area{
+    width: 90%;
+    height: 10vmax;
+}
+.gender-main{
+width: 95%;
+padding: 1vmax;
+margin: auto;
+}

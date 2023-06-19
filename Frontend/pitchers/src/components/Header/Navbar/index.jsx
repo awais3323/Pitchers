@@ -8,9 +8,9 @@ const Navbar = () => {
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
-            Navbar
-          </a>
+          <Link className="navbar-brand" to="/">
+            Pitchers
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -35,9 +35,13 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Features
-                </a>
+                <Link
+                  className="nav-link"
+                  to="/Community"
+                  onClick={() => topLoad()}
+                >
+                  Community
+                </Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">
@@ -52,13 +56,17 @@ const Navbar = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Dropdown link
+                  More
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <a className="dropdown-item" href="#">
-                      Action
-                    </a>
+                    <Link
+                      className="dropdown-item"
+                      to="AboutUs"
+                      onClick={() => topLoad()}
+                    >
+                      AboutUs
+                    </Link>
                   </li>
                   <li>
                     <a className="dropdown-item" href="#">
@@ -77,7 +85,7 @@ const Navbar = () => {
           <Link
             className="log-sign-btn"
             id="log-sign"
-            to="/LogSign"
+            to="/Log"
             onClick={() => topLoad()}
           >
             Log / Sign

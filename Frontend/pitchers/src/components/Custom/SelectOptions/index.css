@@ -1,0 +1,9 @@
+.select-main{
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid black;
+    outline: none;
+    padding: 0.5vmax;
+    margin:  nonei 0.5vmax;
+    width: 15vmax;
+}

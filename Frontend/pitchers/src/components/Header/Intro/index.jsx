@@ -1,6 +1,8 @@
+import MainPage from "../../MainPage";
 import "./index.css";
 const Intro = () => {
   return (
+    <>
     <div className="main-area">
       <div className="main-area-sub1 d-flex flex-column ai-center">
         <span className="app-name-head text-main-color"><span className="highlight-main-head">Pitch</span>ers</span>
@@ -16,6 +18,8 @@ const Intro = () => {
         </div>
       </div>
     </div>
+    <MainPage/>
+    </>
   );
 };
 

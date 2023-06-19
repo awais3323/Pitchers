@@ -11,3 +11,16 @@ export let inputValues = [
   { title: "Age", value: "age", type: "number" },
   { title: "Date of Birth", value: "date_of_birth", type: "date" },
 ];
+
+export let LogValues = [
+  { title: "Name", value: "name", type: "text" },
+  { title: "Email", value: "email", type: "email" },
+]
+
+export let langValues = { title: "Language", value: "languages", type: "text" }
+export let hobbyValues = { title: "Hobbies", value: "hobbies", type: "text" }
+
+let inputEdValues = [
+  { title: "Experience", value: "experiences", type: "text" },
+]
+export let userNamaes = ["awais3323"]

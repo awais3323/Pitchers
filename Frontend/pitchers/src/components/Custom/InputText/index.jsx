@@ -35,7 +35,7 @@ const InputText = (props) => {
 InputText.propTypes = {
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  key: PropTypes.string.isRequired,
+  objKey: PropTypes.string.isRequired,
   getValue: PropTypes.func,
 };
 
