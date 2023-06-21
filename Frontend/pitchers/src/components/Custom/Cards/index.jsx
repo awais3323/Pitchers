@@ -1,4 +1,3 @@
-import React from "react";
 
 const Cards = (props) => {
   return (
@@ -6,7 +5,7 @@ const Cards = (props) => {
       <div className="card mb-3" style={{ maxWidth: "540px" }}>
         <div className="row g-0">
           <div className="col-md-4">
-            <img src={props.img} className="img-fluid rounded-start" alt="..." />
+            <img src="" className="img-fluid rounded-start" alt="..." />
 
           </div>
           <div className="col-md-8">

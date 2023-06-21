@@ -10,3 +10,11 @@ height: 100%;
     align-items: center;
     justify-content: center;
 }
+.correct-icon{
+    background-color: aquamarine;
+    height: 1vmax;
+    width: 1vmax;
+    padding: 0.2vmax;
+    border-radius: 50px;
+
+}

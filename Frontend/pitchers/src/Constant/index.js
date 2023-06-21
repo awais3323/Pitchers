@@ -3,7 +3,7 @@ export let inputValues = [
   { title: "Username", value: "username", type: "text" },
   { title: "Password", value: "password", type: "password" },
   { title: "Confirm Password", value: "confirm", type: "password" },
-  { title: "Git Token (Optional)", value: "git_token", type: "text" },
+  { title: "Git Token (Optional)", value: "github_token", type: "text" },
   { title: "Title", value: "title", type: "text" },
   { title: "Bio", value: "intro", type: "text" },
   { title: "Email", value: "email", type: "email" },
@@ -13,14 +13,27 @@ export let inputValues = [
 ];
 
 export let LogValues = [
-  { title: "Name", value: "name", type: "text" },
-  { title: "Email", value: "email", type: "email" },
-]
+  { title: "Username:", value: "username", type: "text" },
+  { title: "Password:", value: "password", type: "password" },
+];
 
-export let langValues = { title: "Language", value: "languages", type: "text" }
-export let hobbyValues = { title: "Hobbies", value: "hobbies", type: "text" }
+export let langValues = { title: "Language", value: "languages", type: "text" };
+export let hobbyValues = { title: "Hobbies", value: "hobbies", type: "text" };
 
 let inputEdValues = [
   { title: "Experience", value: "experiences", type: "text" },
-]
-export let userNamaes = ["awais3323"]
+];
+export let genderValues = { title: "Gender", value: "gender", type: "text" };
+export let userNamaes = [
+  "awais3323",
+  // "zexcoders",
+  // "MZEESHAN2022",
+  // "Darkweb-pixels",
+];
+export let socialProfiles = [
+  {
+    title: "Social Profile",
+    value: "social_profiles",
+    type: "text",
+  },
+];

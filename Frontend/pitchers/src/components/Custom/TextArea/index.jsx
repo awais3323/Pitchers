@@ -1,10 +1,11 @@
-import PropTypes from "prop-types";
-import "./index.css";
+import React from "react";
 import { useEffect, useState } from "react";
 
-const InputText = (props) => {
+const TextArea = (props) => {
+  let { objkey } = props;
   let { title, type, getValue, objKey,field } = props;
   const [inputValue, setInputValue] = useState("");
+
   useEffect(() => {
     const delay = 500;
     const timer = setTimeout(() => {
@@ -18,26 +19,15 @@ const InputText = (props) => {
       clearTimeout(timer);
     };
   }, [inputValue]);
-
   return (
-    <div className="input-div">
-      <span>{title}</span>
-      <input
-        type={type}
-        placeholder={title}
-        className="custom-input"
+    <>
+      <textarea
+        className="text-area"
+        placeholder={objkey}
         onChange={(e) => setInputValue(e.target.value)}
-      />
-    </div>
+      ></textarea>
+    </>
   );
 };
 
-InputText.propTypes = {
-  title: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  objKey: PropTypes.string.isRequired,
-  field: PropTypes.string.isRequired,
-  getValue: PropTypes.func,
-};
-
-export default InputText;
+export default TextArea;

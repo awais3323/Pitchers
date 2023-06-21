@@ -10,3 +10,9 @@ height: 100%;
     align-items: center;
     justify-content: center;
 }
+.submit-button{
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid black;
+    margin-bottom: 1vmax;
+}

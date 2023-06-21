@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { userNamaes } from "../../Constant";
 import Cards from "../Custom/Cards";
-
-
+import "./index.css"
 const MainPage = () => {
   const [response, setResponse] = useState([]);
   const [logins, setLogins] = useState([]);
@@ -28,8 +27,8 @@ const MainPage = () => {
   console.log(response);
   return (
     <div className="famous-user-main-box">
-      {response.map((data) => (
-        <Cards img={data.avatar_url}/>
+      {userNamaes.map((data) => (
+        <Cards/>
       ))}
     </div>
   );

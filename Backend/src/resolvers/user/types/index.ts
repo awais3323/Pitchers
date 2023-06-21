@@ -254,6 +254,7 @@ export class LoginUser {
 class FieldError {
     @Field()
     field: string
+
     @Field()
     message: string
 }
@@ -265,6 +266,9 @@ export class UserResponse {
 
     @Field(() => User, { nullable: true })
     user?: User
+
+    @Field()
+    status:boolean
 }
 
 @ObjectType()
@@ -274,4 +278,5 @@ export class UpdateResponse {
 
     @Field()
     message?: string
+    
 }

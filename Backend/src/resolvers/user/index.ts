@@ -26,6 +26,7 @@ export class UserResolver {
       // Validate username and password length
       if (options.username.length <= 3) {
         return {
+          status: false,
           errors: [
             {
               field: "username",
@@ -37,6 +38,7 @@ export class UserResolver {
 
       if (options.password.length <= 4) {
         return {
+          status: false,
           errors: [
             {
               field: "password",
@@ -50,6 +52,7 @@ export class UserResolver {
       const existingUser = await User.findOne({ where: { username: options.username } });
       if (existingUser) {
         return {
+          status: false,
           errors: [
             {
               field: "username",
@@ -158,10 +161,11 @@ export class UserResolver {
       sendToken(res, user, 200);
 
       // Return the user response
-      return { user };
+      return { status: true, user };
     } catch (error) {
       console.error(error);
       return {
+        status: false,
         errors: [
           {
             field: "unknown",
@@ -180,6 +184,7 @@ export class UserResolver {
     let user = await User.findOne({ where: { username } })
     if (!user) { // if there is no user
       return {
+        status: false,
         errors: [{
           field: "Unknown",
           message: "user not found"
@@ -189,6 +194,7 @@ export class UserResolver {
     const verifyUser = await argon2.verify(user.password, options.password)
     if (!verifyUser) { // if the password doesn't matches
       return {
+        status: false,
         errors: [{
           field: "Unknown",
           message: "Unable to login with provided credentials"
@@ -196,7 +202,7 @@ export class UserResolver {
       }
     }
     sendToken(res, user, 200)
-    return { user };
+    return { status: true, user };
   }
 
   @Query(() => User, { nullable: true })
@@ -220,6 +226,7 @@ export class UserResolver {
     let user = await User.findOne({ where: { username: options.username } });
     if (!user) { // if there is no user
       return {
+        status: false,
         errors: [{
           field: "Unknown",
           message: "user not found"
@@ -238,7 +245,7 @@ export class UserResolver {
       // Save the user to the database
       await user.save();
     sendToken(res, user, 200)
-    return { user };
+    return { status: false, user };
   }
 
 
@@ -326,7 +333,7 @@ export class UserResolver {
         }],
       }
     }
-    experience.title= options.experience.title,
+    experience.title = options.experience.title,
       experience.description = options.experience.description,
       experience.company_name = options.experience.company_name
     experience.date_joined = options.experience.date_joined,

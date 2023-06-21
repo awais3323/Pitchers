@@ -20,6 +20,7 @@
     flex-direction: column;
     align-items: start;
     width: 93%;
+    padding: 1vmax;
     margin: auto;
     /* justify-content: center; */
 }
@@ -35,6 +36,7 @@
     align-items:self-start;
     justify-content: space-evenly;
     width: 100%;
+    
 }
 .add-button{
     font-size: 1vmax;
@@ -53,4 +55,11 @@
 width: 95%;
 padding: 1vmax;
 margin: auto;
+}
+.social-profile-box{
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly
 }
