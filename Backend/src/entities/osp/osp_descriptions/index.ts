@@ -1,9 +1,10 @@
 import { Field, Int, ObjectType } from "type-graphql";
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, BaseEntity } from "typeorm";
+import { Osp } from "..";
 
 @ObjectType()
 @Entity()
-export class Osp_Comments extends BaseEntity{
+export class Osp_Descriptions extends BaseEntity{
 
     @Field(() => Int)
     @PrimaryGeneratedColumn()
@@ -11,15 +12,18 @@ export class Osp_Comments extends BaseEntity{
 
     @Field()
     @Column()
-    osp_id: number
+    osp_id:number 
+    
+    @Field()
+    @Column()
+    title: string
 
     @Field()
     @Column()
-    username: string
+    description: string
 
-    @Field()
-    @Column()
-    comment: string
+    @ManyToMany(() => Osp, (osp) => osp.osp_descriptions)
+    osps: Osp[];
 
     @Field()
     @CreateDateColumn()

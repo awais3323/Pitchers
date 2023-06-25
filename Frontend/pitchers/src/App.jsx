@@ -9,6 +9,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoginUser from "./components/LoginUser";
 import AboutUs from "./components/AboutUs";
+import Profile from "./components/Profile";
+import { useSelector } from "react-redux";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const barContext = createContext();
@@ -22,6 +24,10 @@ function App() {
       setProgress(100);
     }, 100);
   };
+
+ const { isAuthenticated } = useSelector(
+    (state) => state.user
+  ); 
 
   return (
     <>
@@ -51,9 +57,10 @@ function App() {
           <Navbar />
           <Routes>
             <Route exact path="/" element={<Intro />} />
-            <Route exact path="/Sign" element={<RegisterUser />} />
-            <Route exact path="/Log" element={<LoginUser/>} />
+            <Route exact path="/Sign" element={isAuthenticated?<Profile/>:<RegisterUser />} />
+            <Route exact path="/Log" element={isAuthenticated?<Profile/>:<LoginUser/>} />
             <Route exact path="/AboutUs" element={<AboutUs/>} />
+            <Route exact path="/profile" element={isAuthenticated?<Profile/>:<LoginUser/>} />
           </Routes>
         </barContext.Provider>
       </Router>

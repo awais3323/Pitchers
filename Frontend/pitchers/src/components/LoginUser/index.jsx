@@ -6,26 +6,27 @@ import InputText from "../Custom/InputText";
 import "./index.css";
 import { useMutation } from "urql";
 import { LOGIN_MUT } from "../../gql/mutations";
-import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../Store/Actions/userAction";
 
 const LoginUser = () => {
   const topLoad = useContext(barContext);
-  const [data, setData] = useState({})
-
+  const [data, setData] = useState({});
+  const dispatch = useDispatch();
   const [, logIn] = useMutation(LOGIN_MUT);
-  const getValue = (objKey) => {
+
+ const { loading ,isAuthenticated, user } = useSelector(
+    (state) => state.user
+  ); 
+
+  function getValue(objKey) {
     let tempData = data;
     tempData[objKey.key] = objKey.value;
     setData(tempData);
-  };
-  async function logInUser(){
-      const response = await logIn({ options: data });
-      if(response.data.loginUser.status){
-      toast.success("User Logged In");
-      }
-      else{
-      toast.error(response.data.loginUser.errors[0].message);
-      }
+  }
+
+  async function logInUser() {
+    dispatch(login(data, logIn));
   }
 
   return (
@@ -41,7 +42,9 @@ const LoginUser = () => {
           field={ele.value}
         />
       ))}
-      <button className="log-in-btn" onClick={logInUser}>Log In</button>
+      <button className="log-in-btn" onClick={logInUser}>
+        Log In
+      </button>
       <a href="">Forgot Password</a>
       <div>
         Already a Pitcher?{" "}

@@ -1,60 +1,32 @@
 // OPEN SOURCE PROJECTS
 import { Field, ObjectType } from "type-graphql";
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, BaseEntity } from "typeorm";
+import { Osp_Descriptions } from "./osp_descriptions";
 
 @ObjectType()
 @Entity()
-export class Osp {
+export class Osp extends BaseEntity {
     @Field()
     @PrimaryGeneratedColumn()
     _id: number;
 
     @Field()
     @Column()
-    Author: string;
+    Author: number;
 
     @Field()
     @Column()
-    description: string;
+    osp_id: number;
 
     @Field()
     @Column()
     title: string;
 
-    @Field()
-    @Column()
-    vision: string;
+    @OneToMany(() => Osp_Descriptions, (od) => od.osps)
+    osp_descriptions: Osp_Descriptions[];
 
     @Field()
-    @Column()
-    completeness: string;
-
-    @Field()
-    @Column()
-    category: string;
-
-    @Field()
-    @Column()
-    repo_url: string;
-
-    @Field()
-    @Column()
-    issues: string;
-
-    @Field()
-    @Column()
-    stars: string;
-
-    @Field()
-    @Column()
-    contributors: string;
-    
-    @Field()
-    @Column()
-    type: string;
-
-    @Field()
-        @CreateDateColumn()
+    @CreateDateColumn()
     createdAt: Date;
 
     @Field()

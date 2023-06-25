@@ -2,8 +2,10 @@ import "./index.css";
 import { Link } from "react-router-dom";
 import { barContext } from "../../../App";
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 const Navbar = () => {
   const topLoad = useContext(barContext);
+  const { loading, isAuthenticated, user } = useSelector((state) => state.user);
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -82,14 +84,18 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <Link
-            className="log-sign-btn"
-            id="log-sign"
-            to="/Log"
-            onClick={() => topLoad()}
-          >
-            Log / Sign
-          </Link>
+          {isAuthenticated ? (
+            <Link className="userName" to="/profile">{user.user.username}</Link>
+          ) : (
+            <Link
+              className="log-sign-btn"
+              id="log-sign"
+              to="/Log"
+              onClick={() => topLoad()}
+            >
+              Log / Sign
+            </Link>
+          )}
         </div>
       </nav>
     </>

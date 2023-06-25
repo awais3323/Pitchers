@@ -40,3 +40,7 @@
     background-color: #212529 !important;
     color: white !important;
 }
+.userName{
+    text-decoration: none;
+    color: black;
+}

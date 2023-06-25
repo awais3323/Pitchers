@@ -16,6 +16,8 @@ import Education from "../Custom/Education";
 import { useMutation } from "urql";
 import Profiles from "../Custom/Profiles";
 import { REGISTER_MUT } from "../../gql/mutations";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../../Store/Actions/userAction";
 
 const RegisterUser = () => {
   const [LangNo, setlangNo] = useState(3);
@@ -28,6 +30,7 @@ const RegisterUser = () => {
   const [education, setEducation] = useState([]);
   const [data, setData] = useState({});
   const [socialPro, setSocialPro] = useState({});
+    const dispatch = useDispatch();
 
   const getValue = (objKey) => {
     let tempData = data;
@@ -35,7 +38,7 @@ const RegisterUser = () => {
     setData(tempData);
   };
 
-  const [, register] = useMutation(REGISTER_MUT);
+  const [, registerUser] = useMutation(REGISTER_MUT);
   const signInDataManipulation = (objKey, field) => {
     if (objKey.key == "languages") {
       let langs = lang;
@@ -75,8 +78,7 @@ const RegisterUser = () => {
       toast.error("Password and Confirm Password are not same.");
     } else {
       delete data.confirm;
-      const response = await register({ options: data });
-      console.log(response.data);
+      dispatch(register(data,registerUser))
     }
   }
 
