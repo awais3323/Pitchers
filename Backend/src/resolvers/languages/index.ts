@@ -19,6 +19,7 @@ export class LanguageResolver {
             console.log(err)
         }
     }
+
     @Query(() => [Languages])
     async getAllLanguages(
         @Ctx() { }: MyContext): Promise<Languages[]> {

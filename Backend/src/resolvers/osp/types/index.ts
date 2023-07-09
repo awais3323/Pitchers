@@ -1,4 +1,7 @@
-import { InputType, Field } from "type-graphql"
+import { Osp } from "entities/osp"
+import { Osp_Descriptions } from "entities/osp/osp_descriptions"
+import { Ops_Tags } from "entities/osp/osp_tags"
+import { InputType, Field, ObjectType } from "type-graphql"
 
 @InputType()
 export class createOsp {
@@ -7,6 +10,9 @@ export class createOsp {
 
     @Field()
     title: string
+
+    @Field()
+    description: string
 
     @Field(() => [ospDesc])
     data: ospDesc[]
@@ -34,4 +40,18 @@ export class ospComments{
 
     @Field()
     comment: string
+}
+
+@ObjectType()
+export class ospDetails{
+
+    @Field({nullable:true})
+    osp: Osp
+
+    @Field(()=> [Osp_Descriptions])
+    ospDescriptions:Osp_Descriptions
+    
+    @Field(()=> [Ops_Tags])
+    ospTags:Ops_Tags
+
 }

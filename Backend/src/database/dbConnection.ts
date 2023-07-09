@@ -26,7 +26,7 @@ export const appDataSource = new DataSource({
     username: "postgres",
     password: "3813323",
     logging: true,
-    synchronize: true,
+    // synchronize: true,
     entities: [
         Post,
         Post_Tags,

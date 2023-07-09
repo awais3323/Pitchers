@@ -23,6 +23,10 @@ export class Osp extends BaseEntity {
     @Column()
     title: string;
 
+    @Field()
+    @Column({ nullable: true })
+    description: string;
+
     @OneToMany(() => Osp_Descriptions, (od) => od.osps)
     osp_descriptions: Osp_Descriptions[];
 
