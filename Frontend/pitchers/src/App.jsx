@@ -11,6 +11,7 @@ import LoginUser from "./components/LoginUser";
 import AboutUs from "./components/AboutUs";
 import Profile from "./components/Profile";
 import { useSelector } from "react-redux";
+import OspShow from "./components/Custom/OspShow";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const barContext = createContext();
@@ -60,6 +61,7 @@ function App() {
             <Route exact path="/Log" element={isAuthenticated?<Profile/>:<LoginUser/>} />
             <Route exact path="/AboutUs" element={<AboutUs/>} />
             <Route exact path="/profile" element={isAuthenticated?<Profile/>:<LoginUser/>} />
+            <Route exact path="/osp-show/:id" element={<OspShow/>} />
           </Routes>
         </barContext.Provider>
       </Router>

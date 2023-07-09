@@ -1,10 +1,3 @@
-import {
-  genderValues,
-  hobbyValues,
-  inputValues,
-  langValues,
-  socialProfiles,
-} from "../../Constant";
 import { toast } from "react-toastify";
 import InputText from "../Custom/InputText";
 import "./index.css";
@@ -16,8 +9,15 @@ import Education from "../Custom/Education";
 import { useMutation } from "urql";
 import Profiles from "../Custom/Profiles";
 import { REGISTER_MUT } from "../../gql/mutations";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { register } from "../../Store/Actions/userAction";
+import {
+  genderValues,
+  hobbyValues,
+  inputValues,
+  langValues,
+  socialProfiles,
+} from "../../Constant";
 
 const RegisterUser = () => {
   const [LangNo, setlangNo] = useState(3);
@@ -30,7 +30,7 @@ const RegisterUser = () => {
   const [education, setEducation] = useState([]);
   const [data, setData] = useState({});
   const [socialPro, setSocialPro] = useState({});
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const getValue = (objKey) => {
     let tempData = data;
@@ -78,7 +78,7 @@ const RegisterUser = () => {
       toast.error("Password and Confirm Password are not same.");
     } else {
       delete data.confirm;
-      dispatch(register(data,registerUser))
+      dispatch(register(data, registerUser))
     }
   }
 

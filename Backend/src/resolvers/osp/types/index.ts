@@ -1,6 +1,8 @@
 import { Osp } from "entities/osp"
+import { Osp_Comments } from "entities/osp/osp_comments"
 import { Osp_Descriptions } from "entities/osp/osp_descriptions"
 import { Ops_Tags } from "entities/osp/osp_tags"
+import { User } from "entities/user"
 import { InputType, Field, ObjectType } from "type-graphql"
 
 @InputType()
@@ -31,27 +33,32 @@ export class ospDesc {
 }
 
 @InputType()
-export class ospComments{
+export class ospComments {
     @Field()
-    username:string 
+    username: string
 
     @Field()
-    osp_id:number 
+    osp_id: number
 
     @Field()
     comment: string
 }
 
 @ObjectType()
-export class ospDetails{
+export class ospDetails {
 
-    @Field({nullable:true})
+    @Field({ nullable: true })
     osp: Osp
 
-    @Field(()=> [Osp_Descriptions])
-    ospDescriptions:Osp_Descriptions
-    
-    @Field(()=> [Ops_Tags])
-    ospTags:Ops_Tags
+    @Field({ nullable: true })
+    user: User
 
+    @Field(() => [Osp_Descriptions])
+    ospDescriptions: Osp_Descriptions
+
+    @Field(() => [Ops_Tags])
+    ospTags: Ops_Tags
+
+    @Field(() => [Osp_Comments])
+    ospComments: Osp_Comments
 }

@@ -1,0 +1,76 @@
+.osp-main-intro {
+    display: flex;
+    padding: 2vmax;
+}
+
+.user-osp-main-box {
+    width: 30%;
+    padding: 1vmax;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.osp-intro {
+    width: 70%;
+    padding: 1vmax;
+    display: flex;
+    flex-direction: column;
+}
+
+.osp-tags-box {
+    width: 40%;
+    padding: 1.5vmax;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.tag-span {
+    background-color: rgba(128, 128, 128, 0.179);
+    padding: 0.3vmax;
+    border-radius: 6px;
+}
+
+.osp-description-box {
+    padding: 3vmax;
+}
+
+.osp-description {
+    padding: 2vmax;
+    margin: 1vmax;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.23);
+}
+
+.osp-comment-box {
+    padding: 2vmax;
+}
+
+#comment {
+    width: 70%
+}
+
+.my-comment-box {
+    width: 90%;
+    margin: auto;
+    padding: 1vmax;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.osp-comments-commmunity {
+    padding: 3vmax;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.each-comment {
+    padding: 1vmax;
+    margin: 0.2vmax;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.418);
+}

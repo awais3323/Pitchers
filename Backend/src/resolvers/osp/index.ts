@@ -6,18 +6,25 @@ import { createOsp, ospComments, ospDetails } from "./types";
 import { Osp_Descriptions } from "entities/osp/osp_descriptions";
 import { Osp_Comments } from "entities/osp/osp_comments";
 import { Ops_Tags } from "entities/osp/osp_tags";
+import { User } from "entities/user";
 
 @Resolver()
 export class OspResolver {
-    @Query(() => [Osp]) async osps(): Promise<Osp[]> { return await Osp.find() }
+    @Query(() => [Osp]) async osps(): Promise<Osp[]> {
+        let osp = await Osp.find()
+        console.log(osp)
+        return osp;
+    }
 
     @Query(() => ospDetails, { nullable: true })
     async getOspById(@Arg('id', () => Int) _id: number,): Promise<any | null> {
         let osp = await Osp.findOne({ where: { _id } })
         let ospId = osp?.osp_id
+        let user = User.findOne({where: { _id: osp?.Author }})
         let ospDescriptions = await Osp_Descriptions.find({ where: { osp_id: ospId } })
         let ospTags = await Ops_Tags.find({ where: { osp_id: ospId } })
-        return  { osp, ospDescriptions, ospTags };
+        let ospComments = await Osp_Comments.find({where:{osp_id:ospId}})
+        return { user, osp, ospDescriptions, ospTags, ospComments};
     }
 
     @Mutation(() => Osp)
