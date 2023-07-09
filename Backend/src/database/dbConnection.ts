@@ -4,6 +4,7 @@ import { Languages } from "entities/langauges";
 import { Osp } from "entities/osp";
 import { Osp_Comments } from "entities/osp/osp_comments";
 import { Osp_Descriptions } from "entities/osp/osp_descriptions";
+import { Ops_Tags } from "entities/osp/osp_tags";
 import { Post } from "entities/post";
 import { Post_Comments } from "entities/post/post_comments";
 import { Post_Reactions } from "entities/post/post_reactions";
@@ -39,6 +40,7 @@ export const appDataSource = new DataSource({
         UserHobbies,
         Osp,
         Osp_Comments,
+        Ops_Tags,
         Osp_Descriptions,
         Languages,
         Tags,

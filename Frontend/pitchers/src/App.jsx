@@ -33,9 +33,8 @@ function App() {
     <>
       <Router>
         <barContext.Provider value={() => topLoad()}>
-          {/* <ToastContainer autoClose={3000} draggable={true} position="POSITION.TOP_CENTER"/> */}
           <ToastContainer
-            position="top-center" // Set the position to top center
+            position="top-center" 
             autoClose={5000}
             newestOnTop={false}
             closeOnClick={true}
@@ -43,7 +42,7 @@ function App() {
             pauseOnFocusLoss={false}
             draggable={true}
             pauseOnHover={false}
-            theme="dark" // Use the dark theme
+            theme="dark"
           />
           <LoadingBar
             color="#212529"

@@ -2,6 +2,7 @@
 import { Field, ObjectType } from "type-graphql";
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, BaseEntity } from "typeorm";
 import { Osp_Descriptions } from "./osp_descriptions";
+import { Ops_Tags } from "./osp_tags";
 
 @ObjectType()
 @Entity()
@@ -24,6 +25,9 @@ export class Osp extends BaseEntity {
 
     @OneToMany(() => Osp_Descriptions, (od) => od.osps)
     osp_descriptions: Osp_Descriptions[];
+
+    @OneToMany(() => Ops_Tags, (od) => od.osps)
+    osp_tags: Ops_Tags[];
 
     @Field()
     @CreateDateColumn()

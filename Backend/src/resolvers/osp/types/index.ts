@@ -10,6 +10,9 @@ export class createOsp {
 
     @Field(() => [ospDesc])
     data: ospDesc[]
+
+    @Field(() => [String])
+    tags: string[]
 }
 
 @InputType()

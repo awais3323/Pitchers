@@ -3,11 +3,11 @@ import { Arg, Ctx, Query, Resolver } from "type-graphql";
 import { MyContext } from "types";
 
 @Resolver()
-export class LanguageResolver{
+export class LanguageResolver {
     @Query(() => String)
     async createLanguages(
         @Arg("name") name: string,
-        @Ctx() {}: MyContext) {
+        @Ctx() { }: MyContext) {
         try {
             let langauge = Languages.create({
                 _id: Math.floor(Math.random() * 900000) + 100000,
@@ -18,5 +18,10 @@ export class LanguageResolver{
         catch (err) {
             console.log(err)
         }
+    }
+    @Query(() => [Languages])
+    async getAllLanguages(
+        @Ctx() { }: MyContext): Promise<Languages[]> {
+        return await Languages.find()
     }
 }

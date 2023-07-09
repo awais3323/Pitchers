@@ -5,7 +5,7 @@ import { MyContext } from "types";
 import { createOsp, ospComments } from "./types";
 import { Osp_Descriptions } from "entities/osp/osp_descriptions";
 import { Osp_Comments } from "entities/osp/osp_comments";
-import { User } from "entities/user";
+import { Ops_Tags } from "entities/osp/osp_tags";
 
 @Resolver()
 export class OspResolver {
@@ -47,6 +47,17 @@ export class OspResolver {
         });
 
         await Promise.all(ospData);
+
+        let ospTags= options.tags.map((od) => {
+            const osp_tags = Ops_Tags.create({
+                _id: Math.floor(Math.random() * 899999) + 100000,
+                osp_id: ospId,
+                tag_name:od,
+            });
+            return osp_tags.save();
+        });
+
+        await Promise.all(ospTags);
         return osp
     }
     @Mutation(() => String)
