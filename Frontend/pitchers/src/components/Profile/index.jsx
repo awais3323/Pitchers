@@ -1,83 +1,95 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { githubUser, githubUserFollowers, githubUserRepos } from "../../Store/Actions/userAction";
-import "./index.css";
 import Repo from "../Custom/Repo";
 import Cards from "../Custom/Cards";
+import "./index.css";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const { user } = useSelector((state) => state.user);
   const { gitUser } = useSelector((state) => state.gitUser);
   const { gitUserRepo } = useSelector((state) => state.gitUserRepo);
-  const { gitUserFollowers} = useSelector((state) => state.gitUserFollower);
+  const { gitUserFollowers } = useSelector((state) => state.gitUserFollower);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   useEffect(() => {
     dispatch(githubUser(user.user.username));
     dispatch(githubUserRepos(user.user.username));
     // dispatch(githubUserFollowers(user.user.username));
   }, []);
-
+function navigateToCreateDiscussion(){
+ navigate("/osp-create") 
+}
   return (
     <>
       {gitUser != null ? (
-        <div className="profile-main">
-          <div className="profile-main-pic">
-            <img
-              className="profile-main-dp"
-              src={gitUser?.avatar_url}
-              alt="...."
-            />{" "}
+        <>
+
+          <div>
+          <div className="profile-main">
+            <div className="profile-main-pic">
+              <img
+                className="profile-main-dp"
+                src={gitUser?.avatar_url}
+                alt="...."
+              />{" "}
+            </div>
+            <div className="profile-main-user">
+              <span>
+                <b>Name: </b> {user.user.name}
+              </span>
+              <span>
+                <b>User Name: </b>
+                {user.user.username}
+              </span>
+              <span>
+                <b>Title: </b>
+                {user.user.title}
+              </span>
+              <span>
+                <b>Email: </b>
+                {user.user.email}
+              </span>
+              <span>
+                <b>Age: </b>
+                {user.user.age}
+              </span>
+              <span>
+                <b>Birth Date: </b>
+                {user.user.date_of_birth}
+              </span>
+              <span>
+                <b>Phone No: </b>
+                {user.user.phone_no}
+              </span>
+            </div>
+            <div className="profile-main-user profile-main-user-2">
+              <span>
+                <b>Location: </b> {gitUser?.location}
+              </span>
+              <span>
+                <b>followers: </b> {gitUser?.followers}
+              </span>
+              <span>
+                <b>following: </b> {gitUser?.following}
+              </span>
+              <span>
+                <b>Public Repo: </b> {gitUser?.public_repos}
+              </span>
+              <span>
+                <b>Twitter: </b> {gitUser?.twitter_username}
+              </span>
+              <span>
+                <b>Company: </b> {gitUser?.company}
+              </span>
+            </div>
+            </div>
+            <div className="other-acts">
+              <span className="create-discussion" onClick={navigateToCreateDiscussion}>Create a discussion</span>
+            </div>
           </div>
-          <div className="profile-main-user">
-            <span>
-              <b>Name: </b> {user.user.name}
-            </span>
-            <span>
-              <b>User Name: </b>
-              {user.user.username}
-            </span>
-            <span>
-              <b>Title: </b>
-              {user.user.title}
-            </span>
-            <span>
-              <b>Email: </b>
-              {user.user.email}
-            </span>
-            <span>
-              <b>Age: </b>
-              {user.user.age}
-            </span>
-            <span>
-              <b>Birth Date: </b>
-              {user.user.date_of_birth}
-            </span>
-            <span>
-              <b>Phone No: </b>
-              {user.user.phone_no}
-            </span>
-          </div>
-          <div className="profile-main-user profile-main-user-2">
-            <span>
-              <b>Location: </b> {gitUser?.location}
-            </span>
-            <span>
-              <b>followers: </b> {gitUser?.followers}
-            </span>
-            <span>
-              <b>following: </b> {gitUser?.following}
-            </span>
-            <span>
-              <b>Public Repo: </b> {gitUser?.public_repos}
-            </span>
-            <span>
-              <b>Twitter: </b> {gitUser?.twitter_username}
-            </span>
-            <span>
-              <b>Company: </b> {gitUser?.company}
-            </span>
-          </div>
-        </div>
+        </>
       ) : (
         <span>Nothing is here</span>
       )}
@@ -101,7 +113,7 @@ const Profile = () => {
         <h3>Followers:</h3>
         <div className="git-repo-box-inside">
           {gitUserFollowers?.map((gur, i) => (
-          <Cards key={i} img={gur.avatar_url} name={gitUser}/>
+            <Cards key={i} img={gur.avatar_url} name={gitUser} />
           ))}
         </div>
       </div>

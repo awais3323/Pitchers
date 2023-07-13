@@ -13,6 +13,7 @@
 .profile-main-pic {
     width: 40%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 2vmax;
@@ -77,5 +78,22 @@
     .profile-main-user span {
         font-size: 1.5vmax;
     }
+    .other-acts{
+        width: 100% !important;
+        padding: 2vmax;
+    }
 
+}
+.other-acts{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 70%;
+}
+.create-discussion{
+    background-color: rgba(128, 128, 128, 0.379);
+    padding: 0.5vmax;
+    border-radius: 10px;
+    margin: auto;
+    align-self: center;
 }

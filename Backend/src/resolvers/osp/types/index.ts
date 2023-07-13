@@ -24,6 +24,14 @@ export class createOsp {
 }
 
 @InputType()
+export class getOspById {
+    @Field()
+    user_id: number
+
+    @Field()
+    id: number
+}
+@InputType()
 export class ospDesc {
     @Field()
     title: string

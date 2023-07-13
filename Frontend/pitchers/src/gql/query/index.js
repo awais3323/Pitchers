@@ -1,14 +1,28 @@
 import { gql } from "urql";
 
 export const getOspById = gql`
-query GetOspById() {
-  getOspById(id: 25) {
+query GetOspById($options: getOspById!) {
+  getOspById(options: $options) {
     osp {
       _id
       Author
       osp_id
       title
       description
+      createdAt
+      updatedAt
+    }
+    user {
+      _id
+      name
+      username
+      title
+      intro
+      email
+      phone_no
+      gender
+      age
+      date_of_birth
       createdAt
       updatedAt
     }
@@ -27,14 +41,6 @@ query GetOspById() {
       createdAt
       updatedAt
     }
-    user {
-      name
-      username
-      title
-      email
-      gender
-      age
-    }
     ospComments {
       _id
       osp_id
@@ -44,8 +50,8 @@ query GetOspById() {
       updatedAt
     }
   }
-}
-`;
+}`;
+
 export const allOsp = gql`
   query Osps {
     osps {

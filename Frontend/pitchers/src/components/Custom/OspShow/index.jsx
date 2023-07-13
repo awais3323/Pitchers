@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useQuery } from 'urql'
+import { useQuery, useMutation } from 'urql'
 import { getOspById } from '../../../gql/query'
+import { ADD_COMMENT } from '../../../gql/mutations'
+import { useSelector } from 'react-redux'
+import { toast } from "react-toastify";
 import "./index.css"
 
 const OspShow = () => {
   const { id } = useParams()
+  const [, addComments] = useMutation(ADD_COMMENT);
+  const { user } = useSelector((state) => state.user);
 
   const [osp, setOsp] = useState({
     details: null,
@@ -14,8 +19,8 @@ const OspShow = () => {
     userDetails: null,
     comments: null
   })
-
-  const [result] = useQuery({ query: getOspById, variables: { id } });
+  let data = { id: parseInt(id), user_id: 3 }
+  const [result] = useQuery({ query: getOspById, variables:{options: data }});
 
   useEffect(() => {
     if (result.data) {
@@ -30,7 +35,17 @@ const OspShow = () => {
     }
   }, [result.data]);
 
-  console.log(result?.data)
+  async function createComments() {
+    let comment = document.getElementById("commentBox");
+    try {
+      let data = { username: user?.user.username, osp_id: osp?.details?.osp_id, comment: comment.value }
+      let response = await addComments({ options: data })
+      toast.success(response?.data.createOspComments)
+    }
+    catch (err) {
+      toast.error(err.message)
+    }
+  }
   return (
     <>
       <div className='osp-main-intro'>
@@ -64,15 +79,18 @@ const OspShow = () => {
       </div>
       <div className='osp-comment-box'>
         <h2>Comments</h2>
-        <div className='my-comment-box'>
-          <label htmlFor="text"><b>Add your comment: </b></label>
-          <input type="text" name="text" id="comment" />
-        </div>
+        {user?.user ?
+          <div className='my-comment-box'>
+            <label htmlFor="text"><b>Add your comment: </b></label>
+            <input type="text" name="text" id="commentBox" />
+            <button onClick={createComments}>Submit</button>
+          </div> : ""
+        }
         <div className='osp-comments-commmunity'>
-          {osp?.comments?.map(oc =>(
+          {osp?.comments?.map(oc => (
             <div className='each-comment'>
-            <span><b>{oc.username}: </b></span>
-            <span>{oc.comment}</span>
+              <span><b>{oc.username}: </b></span>
+              <span>{oc.comment}</span>
             </div>
           ))}
         </div>

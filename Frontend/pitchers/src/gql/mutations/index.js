@@ -48,3 +48,21 @@ mutation LoginUser($options: LoginUser!) {
   }
 }
 `;
+export const ADD_COMMENT= `
+mutation CreateOspComments($options: ospComments!) {
+  createOspComments(options: $options)
+}
+`;
+export const CREATE_OSP = `
+mutation CreateOsp($options: createOsp!) {
+  createOsp(options: $options) {
+    _id
+    Author
+    osp_id
+    title
+    description
+    createdAt
+    updatedAt
+  }
+}
+`

@@ -2,7 +2,7 @@ import { Osp } from "entities/osp";
 import { Int, Resolver } from "type-graphql";
 import { Arg, Ctx, Mutation, Query } from "type-graphql/dist/decorators";
 import { MyContext } from "types";
-import { createOsp, ospComments, ospDetails } from "./types";
+import { createOsp, getOspById, ospComments, ospDetails } from "./types";
 import { Osp_Descriptions } from "entities/osp/osp_descriptions";
 import { Osp_Comments } from "entities/osp/osp_comments";
 import { Ops_Tags } from "entities/osp/osp_tags";
@@ -17,8 +17,8 @@ export class OspResolver {
     }
 
     @Query(() => ospDetails, { nullable: true })
-    async getOspById(@Arg('id', () => Int) _id: number,): Promise<any | null> {
-        let osp = await Osp.findOne({ where: { _id } })
+    async getOspById(@Arg('options') options: getOspById): Promise<any | null> {
+        let osp = await Osp.findOne({ where: { _id: options.id } })
         let ospId = osp?.osp_id
         let user = User.findOne({where: { _id: osp?.Author }})
         let ospDescriptions = await Osp_Descriptions.find({ where: { osp_id: ospId } })
