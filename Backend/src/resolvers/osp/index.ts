@@ -1,13 +1,41 @@
 import { Osp } from "entities/osp";
-import { Int, Resolver } from "type-graphql";
+import { Resolver } from "type-graphql";
 import { Arg, Ctx, Mutation, Query } from "type-graphql/dist/decorators";
 import { MyContext } from "types";
-import { createOsp, getOspById, ospComments, ospDetails } from "./types";
+import { createOsp, getOspByArgs, getOspById, ospComments, ospDetails } from "./types";
 import { Osp_Descriptions } from "entities/osp/osp_descriptions";
 import { Osp_Comments } from "entities/osp/osp_comments";
 import { Ops_Tags } from "entities/osp/osp_tags";
 import { User } from "entities/user";
 
+async function getOspByUser(value: string) {
+    let userOsps = await Osp.find({ where: { Author: parseInt(value) } })
+    return userOsps
+}
+
+async function getOspByTitle(value: string) {
+    let userOsps = await Osp.find()
+    let titleOsps: any[] = [];
+    userOsps.forEach(ele => {
+        if (ele.title.toLowerCase() == value.toLowerCase() || ele.title.toLowerCase().startsWith(value) || ele.title.toLowerCase().endsWith(value)) {
+            console.log(ele.title, ele.title == value, ele.title.startsWith(value), ele.title.endsWith(value))
+            titleOsps.push(ele);
+        }
+    })
+    return titleOsps;
+}
+
+async function getOspByTag(value: string) {
+    let userOsps = await Ops_Tags.find({ where: { tag_name: value } })
+    let tagsOsp: any[] = [];
+    userOsps.forEach(async ele => {
+        let osp = await Osp.findOne({ where: { osp_id: ele.osp_id } })
+        tagsOsp.push(osp)
+        console.log(osp)
+    })
+    console.log("===================>>>>",tagsOsp)
+    return tagsOsp;
+}
 @Resolver()
 export class OspResolver {
     @Query(() => [Osp]) async osps(): Promise<Osp[]> {
@@ -20,11 +48,25 @@ export class OspResolver {
     async getOspById(@Arg('options') options: getOspById): Promise<any | null> {
         let osp = await Osp.findOne({ where: { _id: options.id } })
         let ospId = osp?.osp_id
-        let user = User.findOne({where: { _id: osp?.Author }})
+        let user = User.findOne({ where: { _id: osp?.Author } })
         let ospDescriptions = await Osp_Descriptions.find({ where: { osp_id: ospId } })
         let ospTags = await Ops_Tags.find({ where: { osp_id: ospId } })
-        let ospComments = await Osp_Comments.find({where:{osp_id:ospId}})
-        return { user, osp, ospDescriptions, ospTags, ospComments};
+        let ospComments = await Osp_Comments.find({ where: { osp_id: ospId } })
+        return { user, osp, ospDescriptions, ospTags, ospComments };
+    }
+
+    @Query(() => [Osp], { nullable: true })
+    async getOspByArgs(@Arg('options') options: getOspByArgs): Promise<Osp[]> {
+        if (options.arg == "user") {
+            return getOspByUser(options.value)
+        }
+        else if (options.arg == "title") {
+            return getOspByTitle(options.value)
+        }
+        else if (options.arg == "tag") {
+            console.log("=====================>",await getOspByTag(options.value))
+        }
+        return [];
     }
 
     @Mutation(() => Osp)

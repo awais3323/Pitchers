@@ -65,3 +65,16 @@ export const allOsp = gql`
     }
   }
 `;
+export const getOspByArgs = gql`
+query GetOspByArgs($options: getOspByArgs!) {
+  getOspByArgs(options: $options) {
+    _id
+    Author
+    osp_id
+    title
+    description
+    createdAt
+    updatedAt
+  }
+}
+`

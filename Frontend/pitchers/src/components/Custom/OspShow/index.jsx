@@ -81,9 +81,9 @@ const OspShow = () => {
         <h2>Comments</h2>
         {user?.user ?
           <div className='my-comment-box'>
-            <label htmlFor="text"><b>Add your comment: </b></label>
+            <label htmlFor="text"><b>Add your Comment: </b></label>
             <input type="text" name="text" id="commentBox" />
-            <button onClick={createComments}>Submit</button>
+            <button onClick={createComments} className='comment-button'>Submit</button>
           </div> : ""
         }
         <div className='osp-comments-commmunity'>

@@ -31,6 +31,17 @@ export class getOspById {
     @Field()
     id: number
 }
+
+
+@InputType()
+export class getOspByArgs {
+    @Field()
+    value:string 
+
+    @Field()
+    arg:string 
+}
+
 @InputType()
 export class ospDesc {
     @Field()
