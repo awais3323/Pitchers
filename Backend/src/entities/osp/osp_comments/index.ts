@@ -19,7 +19,15 @@ export class Osp_Comments extends BaseEntity{
 
     @Field()
     @Column()
+    parent_id: string
+
+    @Field()
+    @Column()
     comment: string
+
+    @Field()
+    @Column()
+    edited: boolean
 
     @Field()
     @CreateDateColumn()

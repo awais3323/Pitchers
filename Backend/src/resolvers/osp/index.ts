@@ -1,8 +1,8 @@
 import { Osp } from "entities/osp";
-import { Resolver } from "type-graphql";
+import { Int, Resolver } from "type-graphql";
 import { Arg, Ctx, Mutation, Query } from "type-graphql/dist/decorators";
 import { MyContext } from "types";
-import { createOsp, getOspByArgs, getOspById, ospComments, ospDetails } from "./types";
+import { OspCommentsByParentId, createOsp, getOspByArgs, getOspById, ospComments, ospDetails, updateOspComments } from "./types";
 import { Osp_Descriptions } from "entities/osp/osp_descriptions";
 import { Osp_Comments } from "entities/osp/osp_comments";
 import { Ops_Tags } from "entities/osp/osp_tags";
@@ -33,7 +33,7 @@ async function getOspByTag(value: string) {
         tagsOsp.push(osp)
         console.log(osp)
     })
-    console.log("===================>>>>",tagsOsp)
+    console.log("===================>>>>", tagsOsp)
     return tagsOsp;
 }
 @Resolver()
@@ -58,13 +58,13 @@ export class OspResolver {
     @Query(() => [Osp], { nullable: true })
     async getOspByArgs(@Arg('options') options: getOspByArgs): Promise<Osp[]> {
         if (options.arg == "user") {
-            return getOspByUser(options.value)
+            return await getOspByUser(options.value)
         }
         else if (options.arg == "title") {
-            return getOspByTitle(options.value)
+            return await getOspByTitle(options.value)
         }
         else if (options.arg == "tag") {
-            console.log("=====================>",await getOspByTag(options.value))
+            return await getOspByTag(options.value)
         }
         return [];
     }
@@ -117,10 +117,63 @@ export class OspResolver {
         let osp = Osp_Comments.create({
             osp_id: options.osp_id,
             username: options.username,
-            comment: options.comment
+            comment: options.comment,
+            parent_id: options.parent_id,
+            edited: false
         })
         await osp.save()
 
-        return "Comment Added"
+        return "Comment added successfully"
     }
+
+    @Mutation(() => String)
+    async createOspCommentsByParents(
+        @Arg('options') options: ospComments,
+        @Ctx() { }: MyContext): Promise<string> {
+
+        let osp = Osp_Comments.create({
+            // we are making the osp_id > parent_id so the sub comments doesn't show with the main comments
+            osp_id: parseInt(options.parent_id),
+            username: options.username,
+            comment: options.comment,
+            parent_id: options.parent_id,
+            edited: false
+        })
+        await osp.save()
+
+        return "Comment added successfully"
+    }
+
+    @Mutation(() => String)
+    async deleteOspComment(
+        @Arg('id', () => Int) id: number,
+        @Ctx() { }: MyContext): Promise<string> {
+
+        await Osp_Comments.delete(id)
+        return "Comment delete Successfully"
+    }
+
+    @Mutation(() => String)
+    async updateOspComment(
+        @Arg('options') options: updateOspComments,
+        @Ctx() { }: MyContext): Promise<string> {
+
+        let ospComment = await Osp_Comments.findOne({ where: { _id: options.id } })
+        if (!ospComment) {
+            return "Sorry, Osp not found"
+        }
+        ospComment.comment = options.comment;
+        ospComment.edited = true;
+        await ospComment.save()
+
+        return "Comment updated successfully"
+    }
+
+    @Query(() => OspCommentsByParentId, { nullable: true })
+    async getOspCommentsByParentId(@Arg('parentId', () => Int) parentId: number): Promise<any | null> {
+        let ospSubComments = await Osp_Comments.find({ where: { parent_id: parentId.toString() } })
+        console.log(ospSubComments, typeof ospSubComments)
+        return { ospSubComments };
+    }
+
 }

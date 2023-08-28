@@ -53,6 +53,10 @@ mutation CreateOspComments($options: ospComments!) {
   createOspComments(options: $options)
 }
 `;
+export const ADD_COMMENT_PARENT = `
+mutation CreateOspCommentsByParents($options: ospComments!) {
+  createOspCommentsByParents(options: $options)
+}`
 export const CREATE_OSP = `
 mutation CreateOsp($options: createOsp!) {
   createOsp(options: $options) {
@@ -64,5 +68,15 @@ mutation CreateOsp($options: createOsp!) {
     createdAt
     updatedAt
   }
+}
+`
+export const DELETE_OSP_COMMENT = `
+mutation DeleteOspComment($deleteOspCommentId: Int!) {
+  deleteOspComment(id: $deleteOspCommentId)
+}
+`
+export const UPDATE_OSP_COMMENT = `
+mutation UpdateOspComment($options: updateOspComments!) {
+  updateOspComment(options: $options)
 }
 `

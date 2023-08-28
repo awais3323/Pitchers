@@ -46,6 +46,7 @@ query GetOspById($options: getOspById!) {
       osp_id
       username
       comment
+      edited
       createdAt
       updatedAt
     }
@@ -75,6 +76,22 @@ query GetOspByArgs($options: getOspByArgs!) {
     description
     createdAt
     updatedAt
+  }
+}
+`
+export const getOspByParentId = gql`
+query GetOspCommentsByParentId($parentId: Int!) {
+  getOspCommentsByParentId(parentId: $parentId) {
+    ospSubComments {
+      _id
+      osp_id
+      username
+      parent_id
+      comment
+      edited
+      createdAt
+      updatedAt
+    }
   }
 }
 `

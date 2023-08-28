@@ -67,7 +67,6 @@ export const register = (data, register) => async (dispatch) => {
 
 export const githubUser = (username) => async (dispatch) => {
   let response;
-  console.log("1", username);
   try {
     dispatch({
       type: GITUSER_REQUEST,
@@ -87,7 +86,6 @@ export const githubUser = (username) => async (dispatch) => {
 };
 export const githubUserRepos = (username) => async (dispatch) => {
   let response;
-  console.log("1", username);
   try {
     dispatch({
       type: GITUSER_REPOS_REQUEST,
@@ -108,7 +106,6 @@ export const githubUserRepos = (username) => async (dispatch) => {
 
 export const githubUserFollowers = (username) => async (dispatch) => {
   let response;
-  console.log("1", username);
   try {
     dispatch({
       type: GITUSER_FOLLOWERS_REQUEST,

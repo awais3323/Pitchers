@@ -10,7 +10,6 @@ const MainPage = () => {
   useEffect(() => {
     setOsp(result?.data?.osps)
   })
-  console.log(osp)
 
   return (
 

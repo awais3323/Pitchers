@@ -1,9 +1,7 @@
 import argon2 from "argon2";
 import { User } from "entities/user";
 import { Arg, Ctx, Mutation, Query, Resolver } from "type-graphql";
-import { sendToken } from "utils/jwt";
 import { MyContext } from "types";
-import { LoginUser, UpdateResponse, UserRegister, UserResponse, UserUpdate, deleteItem, deleteUser, educationAdd, educationUpdate, experienceAdd, experienceUpdate, hobbiesAdd, languageAdd, profilesAdd, profilesUpdate } from "./types";
 import { isAuthenticatedUser } from "middleware/auth";
 import { Languages } from "entities/langauges";
 import { UserLanguages } from "entities/user/user_languages";
@@ -14,6 +12,8 @@ import { UserSocialProfiles } from "entities/user/user_social_profiles";
 import { UserEducations } from "entities/user/user_education";
 import { UserExperiences } from "entities/user/user_experiences";
 import { In } from "typeorm";
+import { LoginUser, UpdateResponse, UserRegister, UserResponse, UserUpdate, deleteItem, deleteUser, educationAdd, educationUpdate, experienceAdd, experienceUpdate, hobbiesAdd, languageAdd, profilesAdd, profilesUpdate } from "./types";
+import {sendToken} from "utils/jwt"
 
 @Resolver()
 export class UserResolver {
@@ -158,7 +158,7 @@ export class UserResolver {
       await Promise.all(userEx);
 
       // Send the access token
-      sendToken(res, user, 200);
+      sendToken(res, user, 201);
 
       // Return the user response
       return { status: true, user };
@@ -201,7 +201,7 @@ export class UserResolver {
         }],
       }
     }
-    sendToken(res, user, 200)
+    sendToken(res, user, 201)
     return { status: true, user };
   }
 
@@ -244,7 +244,7 @@ export class UserResolver {
 
       // Save the user to the database
       await user.save();
-    sendToken(res, user, 200)
+    sendToken(res, user, 201)
     return { status: false, user };
   }
 

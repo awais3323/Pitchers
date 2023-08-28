@@ -61,6 +61,18 @@ export class ospComments {
 
     @Field()
     comment: string
+
+    @Field()
+    parent_id: string
+}
+
+@InputType()
+export class updateOspComments{
+    @Field()
+    id: number
+
+    @Field()
+    comment: string
 }
 
 @ObjectType()
@@ -80,4 +92,11 @@ export class ospDetails {
 
     @Field(() => [Osp_Comments])
     ospComments: Osp_Comments
+}
+
+@ObjectType()
+export class OspCommentsByParentId {
+
+    @Field(() => [Osp_Comments])
+    ospSubComments: Osp_Comments
 }

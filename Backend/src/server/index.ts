@@ -12,6 +12,7 @@ import { SocialProfileResolver } from "resolvers/social_profiles"
 import { expressMiddleware } from '@apollo/server/express4';
 import { app } from "./app"
 import { OspResolver } from "resolvers/osp"
+import cors from "cors"
 
 const main = async () => {
     await appDataSource.initialize().then(() => console.log("Database is connected ..... Ok"))
@@ -27,13 +28,27 @@ const main = async () => {
     await apolloServer.start();
     app.use(
         '/graphql',
+        cors<cors.CorsRequest>({
+            origin: true,
+            credentials: true,
+        }),
         expressMiddleware(apolloServer, {
-            context: async ({ req, res }) => ({ res, req }),
+            context: async ({ res, req }) => ({ res, req }),
         }),
     );
 
     app.get("/", (_, res) => {
         res.send(`Congratulations, App is running on ___ port ${port}`)
+    })
+    app.get("/sendToken", (_, res) => {
+        // const options = {
+        //     expires: new Date(
+        //         Date.now() + 5 + 24 * 60 * 60 * 1000
+        //     ),
+        //     httpOnly: true
+        // }
+        // res.status(201).cookie('token', "It is working", options)
+        res.send('hello')
     })
 
     app.listen(port, () => {

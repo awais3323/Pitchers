@@ -20,17 +20,19 @@
 }
 
 .osp-tags-box {
-    width: 40%;
+    width: 50%;
     padding: 1.5vmax;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .tag-span {
     background-color: rgba(128, 128, 128, 0.179);
     padding: 0.3vmax;
     border-radius: 6px;
+    margin:0.5vmax ;
 }
 
 .osp-description-box {
@@ -52,6 +54,8 @@
     width: 70%;
     border:none;
     border-bottom: 1px solid black;
+    outline:none;
+    padding: 1vmax;
 }
 .comment-button{
     background-color: transparent;
@@ -81,5 +85,5 @@
 .each-comment {
     padding: 1vmax;
     margin: 0.2vmax;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.418);
+    /* border-bottom: 1px solid rgba(128, 128, 128, 0.418); */
 }
