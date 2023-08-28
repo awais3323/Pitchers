@@ -18,7 +18,6 @@ async function getOspByTitle(value: string) {
     let titleOsps: any[] = [];
     userOsps.forEach(ele => {
         if (ele.title.toLowerCase() == value.toLowerCase() || ele.title.toLowerCase().startsWith(value) || ele.title.toLowerCase().endsWith(value)) {
-            console.log(ele.title, ele.title == value, ele.title.startsWith(value), ele.title.endsWith(value))
             titleOsps.push(ele);
         }
     })
@@ -31,16 +30,13 @@ async function getOspByTag(value: string) {
     userOsps.forEach(async ele => {
         let osp = await Osp.findOne({ where: { osp_id: ele.osp_id } })
         tagsOsp.push(osp)
-        console.log(osp)
     })
-    console.log("===================>>>>", tagsOsp)
     return tagsOsp;
 }
 @Resolver()
 export class OspResolver {
     @Query(() => [Osp]) async osps(): Promise<Osp[]> {
         let osp = await Osp.find()
-        console.log(osp)
         return osp;
     }
 
@@ -172,7 +168,6 @@ export class OspResolver {
     @Query(() => OspCommentsByParentId, { nullable: true })
     async getOspCommentsByParentId(@Arg('parentId', () => Int) parentId: number): Promise<any | null> {
         let ospSubComments = await Osp_Comments.find({ where: { parent_id: parentId.toString() } })
-        console.log(ospSubComments, typeof ospSubComments)
         return { ospSubComments };
     }
 

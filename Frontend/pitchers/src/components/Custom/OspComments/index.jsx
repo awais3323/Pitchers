@@ -26,7 +26,6 @@ const OspComments = ({ oc, userMatched, user, margin, reExecuteGetOspsQuery }) =
     useEffect(() => {
         if (res.data) {
             setSubComments(res?.data?.getOspCommentsByParentId?.ospSubComments)
-            console.log(res?.data?.getOspCommentsByParentId?.ospSubComments)
         }
     }, [res.data, onExpandGetComments.check])
 
@@ -57,7 +56,6 @@ const OspComments = ({ oc, userMatched, user, margin, reExecuteGetOspsQuery }) =
                 reExecuteGetOspsQuery({ requestPolicy: 'network-only' });
                 reExecuteGetOspCommentsByQuery({ requestPolicy: 'network-only' })
                 setShowReplyInputBox(false)
-                console.log("hello")
             } catch (err) {
                 toast.error(err.message);
             }
@@ -77,17 +75,8 @@ const OspComments = ({ oc, userMatched, user, margin, reExecuteGetOspsQuery }) =
     }
 
     function getSubComments() {
-        if(pauseGetCommentByParent){
-        setPauseGetCommentByParent(false);
-            setOnExpandGetComments({ check: crypto.randomUUID() })
-
-        }
-        else{
             reExecuteGetOspCommentsByQuery({ requestPolicy: 'network-only' })
             setOnExpandGetComments({ check: crypto.randomUUID() })
-            console.log(res?.data?.getOspCommentsByParentId?.ospSubComments)
-        }
-
     }
 
     return (
@@ -138,7 +127,7 @@ const OspComments = ({ oc, userMatched, user, margin, reExecuteGetOspsQuery }) =
                 ) : null}
                 {subComments.length > 0 &&
                     subComments.map((sc, i) => (
-                        <OspComments key={i} oc={sc} margin={margin + 3} userMatched={userMatched} user={user} reExecuteGetOspsQuery={reExecuteGetOspCommentsByQuery} />
+                        <OspComments key={i} oc={sc} margin={margin + 1} userMatched={userMatched} user={user} reExecuteGetOspsQuery={reExecuteGetOspCommentsByQuery} />
 
                     ))}
             </div>
