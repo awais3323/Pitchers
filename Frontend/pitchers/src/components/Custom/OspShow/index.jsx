@@ -82,13 +82,16 @@ const OspShow = () => {
           </div>
         ))}
       </div>
-      <div className='osp-comment-box'>
-        <h2>Comments</h2>
+    <div className='osp-comment-box'>
+        <h2>Discussion Board:</h2>
         {user?.user ?
-          <div className='my-comment-box'>
+          <div className='my-comment-box flex flex-row ai-center flex-wrap '>
             <label htmlFor="text"><b>Add your Comment: </b></label>
+            <div>
+
             <input type="text" name="text" id="commentBox" ref={commentsRef} />
-            <button onClick={createComments} className='comment-button'>Submit</button>
+            <button onClick={createComments} className='comment-button ml-2'>Submit</button>
+            </div>
           </div> : ""
         }
         <div className='osp-comments-commmunity'>
